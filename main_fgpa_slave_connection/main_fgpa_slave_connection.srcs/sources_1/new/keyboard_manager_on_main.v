@@ -1,9 +1,8 @@
 `timescale 1ns / 1ps
 //pending
-// inputs from fpga:clk,rst,_5,_10,_50,cancel
-//debounce the inputs probably one pulsing
-//reset might be wrong
-//reset not yet debounced
+//first debounce game control buttons (3 buttons)
+//motor decision based on game 
+//vga 
 module Top(
     //general 
     input clk,
@@ -20,7 +19,13 @@ module Top(
     input request_second_fpga,
     input valid_second_fpga,
     output notice_slave_second_fpga,
-    output ack_second_fpga
+    output ack_second_fpga,
+
+    //the game control
+    //----------------some buttons to do the job-----need to debounce and one pulse-----------------
+    input game_start,
+    input input_done,
+    input restart_game
 );
 
   //debounce the reset & generate rst_n
@@ -60,7 +65,7 @@ module Top(
     .new_second_kb_data(new_second_kb_data)
   );
 
-  //shwoing
+  //showing the keyboard manager
   reg [15:0] nums;
   reg[1:0] chosen_set=2'd1;
   always@(posedge clk)begin
@@ -123,6 +128,42 @@ module Top(
     end
   end
 
+  //GAME LOGIC CORE
+  wire [4-1:0] num_of_revealed_letters;
+  wire [5-1:0] chosen_word[6-1:0];//6 char each char is encoded by 5 bits
+  /*flattened port*/
+  wire [5*6-1:0] flatten_chosen_word;
+  /*---regroup the wires---*/
+  assign chosen_word[5]=flatten_chosen_word[29:25];
+  assign chosen_word[4]=flatten_chosen_word[24:20];
+  assign chosen_word[3]=flatten_chosen_word[19:15];
+  assign chosen_word[2]=flatten_chosen_word[14:10];
+  assign chosen_word[1]=flatten_chosen_word[9:5];
+  assign chosen_word[0]=flatten_chosen_word[4:0];
+  
+  //---------------------------NOT TESTED YET--------------------------------------------------
+  //---------------------------ADD SOME SIGNALS THAT CONTROL THE MOTOR--------------------------
+  //--------------------------we might need to flatten the bus if there is some bus dimension error-------
+  game_logic_core HANGMAN_GAME_LOGIC(
+    //inputs
+    //general
+    clk,
+    rst_n,
+
+    //---two keyboards
+    first_keyboard_data,
+    new_first_kb_data,
+    second_keyboard_data,
+    new_second_kb_data,
+
+    //game controls pending
+    game_start,
+    input_done,
+    restart_game,
+
+    num_of_revealed_letters,
+    flatten_chosen_word//6 char each char is encoded by 5 bits
+  );
 
   SevenSegment svn_seg(
     display,//the led signal corresponding to AN
@@ -132,10 +173,358 @@ module Top(
     clk
   );
 
-
-
 endmodule
 
+
+module game_logic_core(
+  //inputs
+  //general
+  input clk,
+  input rst_n,
+
+  //---two keyboards
+  input [5-1:0] first_keyboard_data,
+  input new_first_kb_data,
+  input [5-1:0] second_keyboard_data,
+  input new_second_kb_data,
+
+  //game controls pending
+  input game_start,
+  input input_done,
+  input restart_game,
+
+  output reg [4-1:0] num_of_revealed_letters,
+  output[5*6-1:0] flatten_chosen_word//6 char each char is encoded by 5 bits
+);
+  reg [5-1:0] chosen_word[6-1:0];
+  assign flatten_chosen_word={
+    chosen_word[5],
+    chosen_word[4],
+    chosen_word[3],
+    chosen_word[2],
+    chosen_word[1],
+    chosen_word[0]
+  };
+  //char encoding
+  //character codes for inter fgpa transfer
+    parameter CHAR_CODES_Q=5'd0;
+    parameter CHAR_CODES_W=5'd1;
+    parameter CHAR_CODES_E=5'd2;
+    parameter CHAR_CODES_R=5'd3;
+    parameter CHAR_CODES_T=5'd4;
+    parameter CHAR_CODES_Y=5'd5;
+    parameter CHAR_CODES_U=5'd6;
+    parameter CHAR_CODES_I=5'd7;
+    parameter CHAR_CODES_O=5'd8;
+    parameter CHAR_CODES_P=5'd9;
+    parameter CHAR_CODES_A=5'd10;
+    parameter CHAR_CODES_S=5'd11;
+    parameter CHAR_CODES_D=5'd12;
+    parameter CHAR_CODES_F=5'd13;
+    parameter CHAR_CODES_G=5'd14;
+    parameter CHAR_CODES_H=5'd15;
+    parameter CHAR_CODES_J=5'd16;
+    parameter CHAR_CODES_K=5'd17;
+    parameter CHAR_CODES_L=5'd18;
+    parameter CHAR_CODES_Z=5'd19;
+    parameter CHAR_CODES_X=5'd20;
+    parameter CHAR_CODES_C=5'd21;
+    parameter CHAR_CODES_V=5'd22;
+    parameter CHAR_CODES_B=5'd23;
+    parameter CHAR_CODES_N=5'd24;
+    parameter CHAR_CODES_M=5'd25;
+    parameter CHAR_CODES_EMPTY=5'd31;
+
+
+  //states
+  parameter STATE_IDLE=4'd0;
+  parameter STATE_INPUT=4'd1;
+  parameter STATE_FIRST_PLAYER=4'd2;
+  parameter STATE_SECOND_PLAYER=4'd3;
+  parameter STATE_FIRST_PLAYER_WIN=4'd4;
+  parameter STATE_SECOND_PLAYER_WIN=4'd5;
+  reg[4-1:0] state, next_state;
+
+  //dead score and num of revealed letters
+  reg[4-1:0] player1_dead_score,next_player1_dead_score;
+  reg[4-1:0] player2_dead_score,next_player2_dead_score;
+  reg [4-1:0] next_num_of_revealed_letters;
+
+  //chosen word
+  //reg chosen word is a output 
+  reg [5-1:0] next_chosen_word[6-1:0];
+
+
+  //sequential updates
+  always@(posedge clk)begin
+    state<=next_state;
+    player1_dead_score<=next_player1_dead_score;
+    player2_dead_score<=next_player2_dead_score;
+    num_of_revealed_letters<=next_num_of_revealed_letters;
+    chosen_word[0]<=next_chosen_word[0];
+    chosen_word[1]<=next_chosen_word[1];
+    chosen_word[2]<=next_chosen_word[2];
+    chosen_word[3]<=next_chosen_word[3];
+    chosen_word[4]<=next_chosen_word[4];
+    chosen_word[5]<=next_chosen_word[5];
+  end
+
+  //----------------------------------------------------determine all the next states-----------------------------------------------//
+
+  ////////////////////////DONE////////////////////////////
+  //next states
+  always @(*)begin
+    //just making sure there is a default value
+    next_state=state;
+
+    if(rst_n==1'b0)begin
+        next_state=STATE_IDLE;
+    end
+    else begin
+      case(state)
+        STATE_IDLE:begin
+          next_state=(game_start==1'b1)?STATE_INPUT:STATE_IDLE;
+        end
+
+        STATE_INPUT:begin
+          next_state=(input_done==1'b1)?STATE_FIRST_PLAYER:STATE_INPUT;
+        end
+
+        STATE_FIRST_PLAYER:begin
+          if(new_first_kb_data/*new letter guess*/)begin
+            //wining or losing conditions
+            if(next_player1_dead_score>=4'd3)begin
+              next_state=STATE_SECOND_PLAYER_WIN;
+            end
+            else if(next_player2_dead_score>=4'd3)begin
+              next_state=STATE_FIRST_PLAYER_WIN;
+            end
+            else begin
+              next_state=STATE_SECOND_PLAYER;
+            end
+          end
+          else begin/*waiting for input*/
+              next_state=STATE_FIRST_PLAYER;
+          end
+        end
+
+        STATE_SECOND_PLAYER:begin
+          if(new_second_kb_data/*new letter guess*/)begin
+            //wining or losing conditions
+            if(next_player1_dead_score>=4'd3)begin
+              next_state=STATE_SECOND_PLAYER_WIN;
+            end
+            else if(next_player2_dead_score>=4'd3)begin
+              next_state=STATE_FIRST_PLAYER_WIN;
+            end
+            else begin
+              next_state=STATE_FIRST_PLAYER;
+            end
+          end
+          else begin
+              next_state=STATE_SECOND_PLAYER;
+          end
+
+        end
+
+        STATE_FIRST_PLAYER_WIN:begin
+            //GO BACK TO IDLE STATE
+            //CAN ADD SOME WIN OPERATIONS
+            if(restart_game==1'b1)begin
+              next_state=STATE_IDLE;
+            end
+            else begin
+              next_state=STATE_FIRST_PLAYER_WIN;
+            end
+            
+        end
+
+        STATE_SECOND_PLAYER_WIN:begin
+            //GO BACK TO IDLE STATE
+            //CAN ADD SOME WIN OPERATIONS
+            if(restart_game==1'b1)begin
+              next_state=STATE_IDLE;
+            end
+            else begin
+              next_state=STATE_SECOND_PLAYER_WIN;
+            end
+        end
+
+        default:begin
+          next_state=STATE_IDLE;
+        end
+      endcase
+    end
+  end
+
+  ////////////////////////DONE////////////////////////////
+  //next player dead score //next_num_of_revealed
+  //(declaration moved to top) reg[4-1:0] player1_dead_score,next_player1_dead_score;
+  //(declaration moved to top) reg[4-1:0] player2_dead_score,next_player2_dead_score;
+  //(declaration moved to top) reg [4-1:0] num_of_revealed_letters;
+  //(declaration moved to top) reg [4-1:0] next_num_of_revealed_letters;
+  always @(*)begin
+    //just makign sure there is a default value
+    next_player1_dead_score=player1_dead_score;
+    next_player2_dead_score=player2_dead_score;
+
+    if(rst_n==1'b0)begin
+        next_player1_dead_score=4'd0;
+        next_player2_dead_score=4'd0;
+    end
+    else begin
+      case(state)
+        STATE_IDLE:begin
+          next_player1_dead_score=player1_dead_score;
+          next_player2_dead_score=player2_dead_score;
+        end
+
+        STATE_INPUT:begin
+          next_player1_dead_score=player1_dead_score;
+          next_player2_dead_score=player2_dead_score;
+        end
+
+        STATE_FIRST_PLAYER:begin
+          if(new_first_kb_data/*new letter guess*/)begin
+            if(chosen_word[num_of_revealed_letters/*-1 +1*/]==first_keyboard_data)begin/*match the input*/
+              next_player1_dead_score=(player1_dead_score>4'd0)?player1_dead_score-4'd1:4'd0;
+              next_player2_dead_score=player2_dead_score+4'd1;
+              next_num_of_revealed_letters=num_of_revealed_letters+4'd1;
+            end
+
+            else begin/*wrong guess*/
+              next_player1_dead_score=player1_dead_score+4'd1;
+              next_player2_dead_score=(player2_dead_score>4'd0)?player2_dead_score-4'd1:4'd0;
+              next_num_of_revealed_letters=num_of_revealed_letters;
+            end
+          end
+          /* waiting user input*/
+          else begin
+            next_player1_dead_score=player1_dead_score;
+            next_player2_dead_score=player2_dead_score;
+            next_num_of_revealed_letters=num_of_revealed_letters;
+          end
+          //game dead score rules:
+            //wining turns make oponent in danger and make yourself good
+            //3 wrong guesses make you die or 2 wrong + oponent 1 correct
+            //ie if cumulative got 3 point (3 wrong or 1 wrong + 2 oponent correct or 2 wrong+ 1 oponent correct)
+        end
+
+        STATE_SECOND_PLAYER:begin
+          if(new_second_kb_data/*new letter guess*/)begin
+            if(chosen_word[num_of_revealed_letters/*-1 +1*/]==second_keyboard_data)begin/*match the input*/
+              next_player1_dead_score=player1_dead_score+4'd1;
+              next_player2_dead_score=(player2_dead_score>4'd0)?player2_dead_score-4'd1:4'd0;
+              next_num_of_revealed_letters=num_of_revealed_letters+4'd1;
+            end
+
+            else begin/*wrong guess*/
+              next_player1_dead_score=(player1_dead_score>4'd0)?player1_dead_score-4'd1:4'd0;
+              next_player2_dead_score=player2_dead_score+4'd1;
+              next_num_of_revealed_letters=num_of_revealed_letters;
+            end
+          end
+          /* waiting user input*/
+          else begin
+            next_player1_dead_score=player1_dead_score;
+            next_player2_dead_score=player2_dead_score;
+            next_num_of_revealed_letters=num_of_revealed_letters;
+          end
+          //game dead score rules:
+            //wining turns make oponent in danger and make yourself good
+            //3 wrong guesses make you die or 2 wrong + oponent 1 correct
+            //ie if cumulative got 3 point (3 wrong or 1 wrong + 2 oponent correct or 2 wrong+ 1 oponent correct)
+        end
+
+        STATE_FIRST_PLAYER_WIN:begin
+          next_player1_dead_score=player1_dead_score;
+          next_player2_dead_score=player2_dead_score;
+          //show all the letters
+          next_num_of_revealed_letters=4'd6;
+        end
+
+        STATE_SECOND_PLAYER_WIN:begin
+          next_player1_dead_score=player1_dead_score;
+          next_player2_dead_score=player2_dead_score;
+          //show all the letters
+          next_num_of_revealed_letters=4'd6;
+        end
+
+        default:begin
+          next_player1_dead_score=player1_dead_score;
+          next_player2_dead_score=player2_dead_score;
+          //show all the letters
+          next_num_of_revealed_letters=num_of_revealed_letters;
+        end
+      endcase
+    end
+  end
+
+  ////////////////////////DONE////////////////////////////
+  //next pattern to store
+  // (declaration moved to top) reg [5-1:0] next_chosen_word[6-1:0]
+  // (declaration moved to top) reg [6-1:0] chosen_word[5-1:0]
+  always @(*)begin
+    //just makign sure there is a default value
+            next_chosen_word[5]=chosen_word[5];
+            next_chosen_word[4]=chosen_word[4];
+            next_chosen_word[3]=chosen_word[3];
+            next_chosen_word[2]=chosen_word[2];
+            next_chosen_word[1]=chosen_word[1];
+            next_chosen_word[0]=chosen_word[0];
+
+    if(rst_n==1'b0)begin 
+      next_chosen_word[5]=CHAR_CODES_EMPTY;
+      next_chosen_word[4]=CHAR_CODES_EMPTY;
+      next_chosen_word[3]=CHAR_CODES_EMPTY;
+      next_chosen_word[2]=CHAR_CODES_EMPTY;
+      next_chosen_word[1]=CHAR_CODES_EMPTY;
+      next_chosen_word[0]=CHAR_CODES_EMPTY;
+    end
+    else begin
+      case(state)
+        STATE_IDLE:begin
+          next_chosen_word[5]=CHAR_CODES_EMPTY;
+          next_chosen_word[4]=CHAR_CODES_EMPTY;
+          next_chosen_word[3]=CHAR_CODES_EMPTY;
+          next_chosen_word[2]=CHAR_CODES_EMPTY;
+          next_chosen_word[1]=CHAR_CODES_EMPTY;
+          next_chosen_word[0]=CHAR_CODES_EMPTY;
+        end
+
+        STATE_INPUT:begin
+          //to be improved
+          //current test case is hello
+          if(input_done==1'b1)begin
+            next_chosen_word[5]=CHAR_CODES_E;
+            next_chosen_word[4]=CHAR_CODES_L;
+            next_chosen_word[3]=CHAR_CODES_Z;
+            next_chosen_word[2]=CHAR_CODES_Z;
+            next_chosen_word[1]=CHAR_CODES_U;
+            next_chosen_word[0]=CHAR_CODES_P;
+          end
+          else begin
+            next_chosen_word[5]=chosen_word[5];
+            next_chosen_word[4]=chosen_word[4];
+            next_chosen_word[3]=chosen_word[3];
+            next_chosen_word[2]=chosen_word[2];
+            next_chosen_word[1]=chosen_word[1];
+            next_chosen_word[0]=chosen_word[0];
+          end
+        end
+        default:begin
+            next_chosen_word[5]=chosen_word[5];
+            next_chosen_word[4]=chosen_word[4];
+            next_chosen_word[3]=chosen_word[3];
+            next_chosen_word[2]=chosen_word[2];
+            next_chosen_word[1]=chosen_word[1];
+            next_chosen_word[0]=chosen_word[0];
+        end
+      endcase
+    end
+  end
+
+endmodule
 
 
 module keyboard_manager(
