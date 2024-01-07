@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='D:/hdl/final proj/slave/slave.runs/impl_1'
+HD_PWD='D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -42,6 +42,6 @@ EAStep()
 
 # pre-commands:
 /bin/touch .init_design.begin.rst
-EAStep vivado -log keyboard_to_master_chip.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source keyboard_to_master_chip.tcl -notrace
+EAStep vivado -log Top.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source Top.tcl -notrace
 
 

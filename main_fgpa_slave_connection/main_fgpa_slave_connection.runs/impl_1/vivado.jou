@@ -2,11 +2,11 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Sun Jan  7 06:08:04 2024
-# Process ID: 23868
-# Current directory: D:/hdl/final proj/slave/slave.runs/impl_1
-# Command line: vivado.exe -log keyboard_to_master_chip.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source keyboard_to_master_chip.tcl -notrace
-# Log file: D:/hdl/final proj/slave/slave.runs/impl_1/keyboard_to_master_chip.vdi
-# Journal file: D:/hdl/final proj/slave/slave.runs/impl_1\vivado.jou
+# Start of session at: Sun Jan  7 23:07:03 2024
+# Process ID: 5952
+# Current directory: D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.runs/impl_1
+# Command line: vivado.exe -log Top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source Top.tcl -notrace
+# Log file: D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.runs/impl_1/Top.vdi
+# Journal file: D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.runs/impl_1\vivado.jou
 #-----------------------------------------------------------
-source keyboard_to_master_chip.tcl -notrace
+source Top.tcl -notrace

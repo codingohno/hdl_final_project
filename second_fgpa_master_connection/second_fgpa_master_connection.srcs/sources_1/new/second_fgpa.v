@@ -210,9 +210,15 @@ module second_fpga_and_keyboard(
 
     //////////////////////////////////////////////////////////////////////////////////connection interface//////////////////////////////////////////////////////////////////////////////////
     //we need a trigger for sending the data
+
+    //finding that we are not holding the key
+    wire new_press_signal;
+    new_press new_press_detector(new_press_signal,clk,key_down,last_change,been_ready,rst);
     always @ (*) begin
      next_trigger_send=trigger_send;
-        if ((been_ready && key_down[last_change]) == 1'b1) begin/*a keydown detected and send once only*/
+        //not sure which is better
+        //if ((been_ready && (key_down[last_change]==1'b1) && (new_press_signal== 1'b1)) == 1'b1) begin
+        if ((been_ready && (key_down[last_change]==1'b1) && (new_press_signal== 1'b1)) == 1'b1) begin/*a keydown detected and send once only*/
             next_trigger_send=1'b1;
         end
         else begin
@@ -221,6 +227,29 @@ module second_fpga_and_keyboard(
     end
 
     connection_master  master_connection_interface(.clk(clk), .rst(rst), .data_inputs(char_to_send), .request(trigger_send), .notice_master(notice_master), .data_to_slave_o(data_to_slave_o), .valid(valid), .request2s(request2s), .ack(ack));
+endmodule
+
+module new_press(new_press_signal,clk,key_down,last_change,been_ready,rst);
+  output new_press_signal;
+  input [8:0] last_change;
+  input [511:0] key_down;
+  input clk;
+  input rst;
+  input been_ready;
+
+  wire been_ready_op;
+  OnePulse op0(been_ready_op,been_ready,clk);
+
+  //no buffer
+  reg [511:0] prev_key_down;
+
+  always@(posedge clk)begin
+      if(been_ready_op)begin
+          prev_key_down<=key_down;
+      end
+  end
+
+  assign new_press_signal=((prev_key_down[last_change]==1'b0)&&(key_down[last_change]==1'b1));
 endmodule
 
 module SevenSegment(

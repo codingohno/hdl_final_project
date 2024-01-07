@@ -4,31 +4,206 @@
 //debounce the inputs probably one pulsing
 //reset might be wrong
 //reset not yet debounced
+module Top(
+    //general 
+    input clk,
+    input unde_rst,
+    output[3:0] digit,
+    output[7-1:0] display,
 
-
-//the initiator of the connection
-module keyboard_manager(
-    output wire [6:0] display,
-    output wire [3:0] digit,
+    //first fpga keyboard io
     inout wire PS2_DATA,
     inout wire PS2_CLK,
-    input wire unde_rst,
+
+    //second fpga keyboard io
+    input [5-1:0] data_in_second_fpga,
+    input request_second_fpga,
+    input valid_second_fpga,
+    output notice_slave_second_fpga,
+    output ack_second_fpga
+);
+
+  //debounce the reset & generate rst_n
+  wire unone_rst,rst;
+  debounce db0(unone_rst,unde_rst,clk);
+  OnePulse op0(rst,unone_rst,clk);
+  wire rst_n;
+  assign rst_n=~rst;
+
+  //the data that should be shown
+  wire [5-1:0] first_keyboard_data;
+  wire new_first_kb_data;
+  wire [5-1:0] second_keyboard_data;
+  wire new_second_kb_data;
+
+
+  keyboard_manager test(
+    //general 
+    .clk(clk),
+    .rst_n(rst_n),
+    
+    //first fpga keyboard io
+    .PS2_DATA(PS2_DATA),
+    .PS2_CLK(PS2_CLK),
+
+    //second fpga keyboard io
+    .data_in(data_in_second_fpga),
+    .request(request_second_fpga),
+    .valid(valid_second_fpga),
+    .notice_slave(notice_slave_second_fpga),
+    .ack(ack_second_fpga),
+
+    //manager data
+    .first_keyboard_data(first_keyboard_data),
+    .new_first_kb_data(new_first_kb_data),
+    .second_keyboard_data(second_keyboard_data),
+    .new_second_kb_data(new_second_kb_data)
+  );
+
+  //shwoing
+  reg [15:0] nums;
+  reg[1:0] chosen_set=2'd1;
+  always@(posedge clk)begin
+    if(rst_n==1'b0)begin//showing the first fpga keyboard input
+        chosen_set<=2'd1;
+    end
+    else begin
+      if(new_first_kb_data)begin
+        chosen_set<=2'd1;
+      end
+      else if  (new_second_kb_data) begin
+        chosen_set<=2'd2;
+      end
+      else begin
+        chosen_set<=chosen_set;
+      end
+    end
+  end
+
+  reg temp;
+  always @(*)begin
+    if(chosen_set==2'd1)begin
+      nums[15:4]={
+                    4'd0,
+
+                    4'd0,
+                    
+                    (first_keyboard_data>=5'd30)?4'd3:
+                    (first_keyboard_data>=5'd20)?4'd2:
+                    (first_keyboard_data>=5'd10)?4'd1:
+                    4'd0
+                  };
+      {temp,nums[3:0]}={
+                        (first_keyboard_data>=5'd30)?first_keyboard_data-5'd30:
+                        (first_keyboard_data>=5'd20)?first_keyboard_data-5'd20:
+                        (first_keyboard_data>=5'd10)?first_keyboard_data-5'd10:
+                        first_keyboard_data
+                      };
+    end
+    else if(chosen_set==2'd2) begin
+      nums[15:4]={
+                    4'd0,
+
+                    4'd0,
+                    
+                    (second_keyboard_data>=5'd30)?4'd3:
+                    (second_keyboard_data>=5'd20)?4'd2:
+                    (second_keyboard_data>=5'd10)?4'd1:
+                    4'd0
+                  };
+      {temp,nums[3:0]}={
+                        (second_keyboard_data>=5'd30)?second_keyboard_data-5'd30:
+                        (second_keyboard_data>=5'd20)?second_keyboard_data-5'd20:
+                        (second_keyboard_data>=5'd10)?second_keyboard_data-5'd10:
+                        second_keyboard_data
+                      };
+    end
+    else begin
+      nums={4'd1,4'd2,4'd3,4'd4};
+    end
+  end
+
+
+  SevenSegment svn_seg(
+    display,//the led signal corresponding to AN
+    digit,//the AN
+    nums,//concate all the numbers to do numbers to show in each digital display
+    rst,
+    clk
+  );
+
+
+
+endmodule
+
+
+
+module keyboard_manager(
+    //general 
+    input clk,
+    input rst_n,
+    
+    //first fpga keyboard io
+    inout wire PS2_DATA,
+    inout wire PS2_CLK,
+
+    //second fpga keyboard io
+    input [5-1:0] data_in,
+    input request,
+    input valid,
+    output notice_slave,
+    output ack,
+
+    //manager data
+    output wire [5-1:0] first_keyboard_data,
+    output wire new_first_kb_data,
+    output wire [5-1:0] second_keyboard_data,
+    output wire new_second_kb_data
+);
+
+    //second keyboard
+    // wire[5-1:0] second_keyboard_data;
+    // wire new_second_kb_data;
+    wire rst; assign rst=~rst_n;
+    connection_slave slave_receiver(
+      .clk(clk),
+      .rst_n(rst_n), 
+      .request(request),
+      .valid(valid), 
+      .notice_slave(notice_slave), 
+      .data_in(data_in), 
+      .ack(ack),
+      .slave_data_o(second_keyboard_data),
+      .new_incoming_data(new_second_kb_data)
+    );
+
+
+    //first keyboard (main fpga keyboard)
+    // wire[5-1:0] first_keyboard_data;
+    // wire new_first_kb_data;
+    keyboard_main kb_main(
+      .PS2_DATA(PS2_DATA),
+      .PS2_CLK(PS2_CLK),
+      .rst(rst),
+      .clk(clk),
+      .char_to_send(first_keyboard_data),
+      .new_incoming_data(new_first_kb_data)
+    );
+endmodule
+
+//the main fpga's keyboard
+module keyboard_main(
+    inout wire PS2_DATA,
+    inout wire PS2_CLK,
+    input wire rst,
     input wire clk,
 
     //added
-    output notice_master,
-    output [5-1:0] data_to_slave_o,
-    output valid,
-    output request2s,
-    input ack
+     output reg [5-1:0] char_to_send,
+     output reg new_incoming_data
     );
 
-    //creating rst and rst_n signal
-    wire unone_rst,rst;
-    debounce db0(unone_rst,unde_rst,clk);
-    OnePulse op0(rst,unone_rst,clk);
-    wire rst_n;
-    assign rst_n=~rst;
+
 
     //the protocol of each keys to the enums 
     //26 of them 
@@ -90,27 +265,20 @@ module keyboard_manager(
     //the char_code sending data
     reg [5-1:0] char_code;
     reg [5-1:0] next_send_char;
-    reg [5-1:0] char_to_send;
-    
-    //from keyboard decorder
+    //reg [5-1:0] char_to_send;
+
+    //from keyboard decoder
     wire [511:0] key_down;
     wire [8:0] last_change;
     wire been_ready;
 
-    //the button for sending the data to the slave
-    reg trigger_send,next_trigger_send;
-    
-    
-    //needs to modified
-    reg[16-1:0] nums;
-    SevenSegment seven_seg (
-        .display(display),
-        .digit(digit),
-        .nums(nums),
-        .rst(rst),
-        .clk(clk)
-    );
-      
+
+    //new data occurence
+    reg next_new_incoming_data;
+
+
+
+
     KeyboardDecoder key_de (
         .key_down(key_down),
         .last_change(last_change),
@@ -122,107 +290,103 @@ module keyboard_manager(
     );
 
 
-
-    //////////////////////////////////////////////////////////////////////////////////keyboard interface//////////////////////////////////////////////////////////////////////////////////
-      //test block for showing the char_to_send in decimal
-      reg temp1;
-      always@(*)begin
-          //first two digits is always 0
-          nums[15:8]=8'd0;
-
-          //the tenths
-          nums[7:4]=(char_to_send>=5'd30)?4'd3:(char_to_send>=5'd20)?4'd2:(char_to_send>=5'd10)?4'd1:4'd0;
-
-          //the ones
-          {temp1,nums[3:0]}=(char_to_send>=5'd30)?char_to_send-5'd30:
-                            (char_to_send>=5'd20)?char_to_send-5'd20:
-                            (char_to_send>=5'd10)?char_to_send-5'd10:
-                            char_to_send;
-      end
-
-
-
-      //send_char & trigger_send sequential update
-      //description:
-      // the next_send_char is determined first because at posedge it changes to the next data
-      // but the trigger only take effect on the next posedge of the clk
-      always@(posedge clk)begin
-          if(rst)begin
-              char_to_send<=5'd0;
-              trigger_send<=1'b0;
-          end
-          else begin
-              char_to_send<=next_send_char;
-              trigger_send<=next_trigger_send;
-          end
-      end
-
-      //we need a state to record finite state machine for the keyboard
-      //slave next_send generator
-      always @ (*) begin
-        next_send_char=char_to_send;
-          if ((been_ready && key_down[last_change]) == 1'b1) begin/*a keydown detected*/
-              next_send_char=char_code;
-          end
-          else begin
-              next_send_char=char_to_send;
-          end
-      end
-      
-      //last state-->char codes
-      //translate the last change to my alphabert encoding(a state-like variable)
-      //if we need to detect event we need to combine it with the been ready
-      //note that all the unspecified keys will become the default
-      always @ (*) begin
-          case (last_change)
-              KEY_CODES_Q:char_code = CHAR_CODES_Q;
-              KEY_CODES_E:char_code = CHAR_CODES_E;
-              KEY_CODES_R:char_code = CHAR_CODES_R;
-              KEY_CODES_W:char_code = CHAR_CODES_W;
-              KEY_CODES_T:char_code = CHAR_CODES_T;
-              KEY_CODES_Y:char_code = CHAR_CODES_Y;
-              KEY_CODES_U:char_code = CHAR_CODES_U;
-              KEY_CODES_I:char_code = CHAR_CODES_I;
-              KEY_CODES_O:char_code = CHAR_CODES_O;
-              KEY_CODES_P:char_code = CHAR_CODES_P;
-
-              KEY_CODES_A:char_code = CHAR_CODES_A;
-              KEY_CODES_S:char_code = CHAR_CODES_S;
-              KEY_CODES_D:char_code = CHAR_CODES_D;
-              KEY_CODES_F:char_code = CHAR_CODES_F;
-              KEY_CODES_G:char_code = CHAR_CODES_G;
-              KEY_CODES_H:char_code = CHAR_CODES_H;
-              KEY_CODES_J:char_code = CHAR_CODES_J;
-              KEY_CODES_K:char_code = CHAR_CODES_K;
-              KEY_CODES_L:char_code = CHAR_CODES_L;
-
-              KEY_CODES_Z:char_code = CHAR_CODES_Z;
-              KEY_CODES_X:char_code = CHAR_CODES_X;
-              KEY_CODES_C:char_code = CHAR_CODES_C;
-              KEY_CODES_V:char_code = CHAR_CODES_V;
-              KEY_CODES_B:char_code = CHAR_CODES_B;
-              KEY_CODES_N:char_code = CHAR_CODES_N;
-              KEY_CODES_M:char_code = CHAR_CODES_M;
-              default: char_code = 5'd31;//ANY OTHER KEY BECOMES THIS ERROR CHAR CODE
-          endcase
-      end
-
-
-    //////////////////////////////////////////////////////////////////////////////////connection interface//////////////////////////////////////////////////////////////////////////////////
-    //we need a trigger for sending the data
-    wire one_pulse_ready;
-    OnePulse op_ready(one_pulse_ready,been_ready,clk);
-    always @ (*) begin
-     next_trigger_send=trigger_send;
-        if ((one_pulse_ready && key_down[last_change]) == 1'b1) begin/*a keydown detected and send once only*/
-            next_trigger_send=1'b1;
+    //send_char sequential update
+    always@(posedge clk)begin
+        if(rst)begin
+            char_to_send<=5'd0;
+            new_incoming_data<=1'b0;
         end
         else begin
-            next_trigger_send=1'b0;
+            char_to_send<=next_send_char;
+            new_incoming_data<=next_new_incoming_data;
         end
     end
 
-    connection_master  master_connection_interface(.clk(clk), .rst(rst), .data_inputs(char_to_send), .request(trigger_send), .notice_master(notice_master), .data_to_slave_o(data_to_slave_o), .valid(valid), .request2s(request2s), .ack(ack));
+
+    //new data occurence
+    wire new_press_signal;
+    new_press new_press_detector(new_press_signal,clk,key_down,last_change,been_ready,rst);
+    always @ (*) begin
+     next_new_incoming_data=new_incoming_data;
+        if ((been_ready && (key_down[last_change]==1'b1)&&(new_press_signal== 1'b1)) == 1'b1) begin/*a keydown detected and send once only*/
+            next_new_incoming_data=1'b1;
+        end
+        else begin
+            next_new_incoming_data=1'b0;
+        end
+    end
+
+    //next_send to manager
+    always @ (*) begin
+      next_send_char=char_to_send;
+        if ((been_ready && key_down[last_change]/*only detect keydown*/) == 1'b1) begin
+            next_send_char=char_code;
+        end
+        else begin
+            next_send_char=char_to_send;
+        end
+    end
+
+    //last state-->char codes
+    //translate the last change to my alphabert encoding(a state-like variable)
+    //if we need to detect event we need to combine it with the been ready
+    //note that all the unspecified keys will become the default
+    always @ (*) begin
+        case (last_change)
+            KEY_CODES_Q:char_code = CHAR_CODES_Q;
+            KEY_CODES_E:char_code = CHAR_CODES_E;
+            KEY_CODES_R:char_code = CHAR_CODES_R;
+            KEY_CODES_W:char_code = CHAR_CODES_W;
+            KEY_CODES_T:char_code = CHAR_CODES_T;
+            KEY_CODES_Y:char_code = CHAR_CODES_Y;
+            KEY_CODES_U:char_code = CHAR_CODES_U;
+            KEY_CODES_I:char_code = CHAR_CODES_I;
+            KEY_CODES_O:char_code = CHAR_CODES_O;
+            KEY_CODES_P:char_code = CHAR_CODES_P;
+
+            KEY_CODES_A:char_code = CHAR_CODES_A;
+            KEY_CODES_S:char_code = CHAR_CODES_S;
+            KEY_CODES_D:char_code = CHAR_CODES_D;
+            KEY_CODES_F:char_code = CHAR_CODES_F;
+            KEY_CODES_G:char_code = CHAR_CODES_G;
+            KEY_CODES_H:char_code = CHAR_CODES_H;
+            KEY_CODES_J:char_code = CHAR_CODES_J;
+            KEY_CODES_K:char_code = CHAR_CODES_K;
+            KEY_CODES_L:char_code = CHAR_CODES_L;
+
+            KEY_CODES_Z:char_code = CHAR_CODES_Z;
+            KEY_CODES_X:char_code = CHAR_CODES_X;
+            KEY_CODES_C:char_code = CHAR_CODES_C;
+            KEY_CODES_V:char_code = CHAR_CODES_V;
+            KEY_CODES_B:char_code = CHAR_CODES_B;
+            KEY_CODES_N:char_code = CHAR_CODES_N;
+            KEY_CODES_M:char_code = CHAR_CODES_M;
+            default: char_code = 5'd31;//ANY OTHER KEY BECOMES THIS ERROR CHAR CODE
+        endcase
+    end
+endmodule
+
+module new_press(new_press_signal,clk,key_down,last_change,been_ready,rst);
+  output new_press_signal;
+  input [8:0] last_change;
+  input [511:0] key_down;
+  input clk;
+  input rst;
+  input been_ready;
+
+  wire been_ready_op;
+  OnePulse op0(been_ready_op,been_ready,clk);
+
+  //no buffer
+  reg [511:0] prev_key_down;
+
+  always@(posedge clk)begin
+      if(been_ready_op)begin
+          prev_key_down<=key_down;
+      end
+  end
+
+  assign new_press_signal=((prev_key_down[last_change]==1'b0)&&(key_down[last_change]==1'b1));
 endmodule
 
 module SevenSegment(
@@ -297,6 +461,35 @@ module SevenSegment(
     end
 endmodule
 
+module debounce(debounced,undebounced,clk);
+    input undebounced,clk;
+    output debounced;
+
+    reg [3:0] dff;
+    always@(posedge clk)begin
+        dff[0]<=undebounced;
+        dff[3:1]<=dff[2:0];
+    end
+
+    and and0(debounced,dff[0],dff[1],dff[2],dff[3]);
+endmodule
+
+module OnePulse (
+    output reg signal_single_pulse,
+    input wire signal,
+    input wire clock
+    );
+    
+    reg signal_delay;
+
+    always @(posedge clock) begin
+        if (signal == 1'b1 & signal_delay == 1'b0)
+            signal_single_pulse <= 1'b1;
+        else
+            signal_single_pulse <= 1'b0;
+        signal_delay <= signal;
+    end
+endmodule
 
 module clk_divider(count_for_100_megahz, clk, div_clk,rst_n);
     input[27-1:0] count_for_100_megahz;
@@ -1046,36 +1239,6 @@ module KeyboardDecoder(
             key_valid <= 1'b0;
             key_down <= key_down;
         end
-    end
-endmodule
-
-module debounce(debounced,undebounced,clk);
-    input undebounced,clk;
-    output debounced;
-
-    reg [3:0] dff;
-    always@(posedge clk)begin
-        dff[0]<=undebounced;
-        dff[3:1]<=dff[2:0];
-    end
-
-    and and0(debounced,dff[0],dff[1],dff[2],dff[3]);
-endmodule
-
-module OnePulse (
-    output reg signal_single_pulse,
-    input wire signal,
-    input wire clock
-    );
-    
-    reg signal_delay;
-
-    always @(posedge clock) begin
-        if (signal == 1'b1 & signal_delay == 1'b0)
-            signal_single_pulse <= 1'b1;
-        else
-            signal_single_pulse <= 1'b0;
-        signal_delay <= signal;
     end
 endmodule
 

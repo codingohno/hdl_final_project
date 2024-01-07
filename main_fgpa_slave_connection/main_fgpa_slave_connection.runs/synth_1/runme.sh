@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='D:/hdl/final proj/slave/slave.runs/synth_1'
+HD_PWD='D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -40,4 +40,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log keyboard_to_master_chip.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source keyboard_to_master_chip.tcl
+EAStep vivado -log Top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl

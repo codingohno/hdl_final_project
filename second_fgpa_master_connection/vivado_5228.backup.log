@@ -1,0 +1,94 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sun Jan  7 19:17:03 2024
+# Process ID: 5228
+# Current directory: D:/hdl/final proj/second_fgpa_master_connection
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent27128 D:\hdl\final proj\second_fgpa_master_connection\second_fgpa_master_connection.xpr
+# Log file: D:/hdl/final proj/second_fgpa_master_connection/vivado.log
+# Journal file: D:/hdl/final proj/second_fgpa_master_connection\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project {D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.xpr}
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Vivado/2020.2/data/ip'.
+open_project: Time (s): cpu = 00:00:57 ; elapsed = 00:00:36 . Memory (MB): peak = 1017.285 ; gain = 0.000
+update_compile_order -fileset sources_1
+WARNING: [Common 17-9] Error reading message records.
+open_hw_manager
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210183B035DDA
+open_hw_target: Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2367.191 ; gain = 1348.797
+set_property PROGRAM.FILE {D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connectreset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Sun Jan  7 19:50:21 2024] Launched synth_1...
+Run output will be captured here: D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.runs/synth_1/runme.log
+[Sun Jan  7 19:50:21 2024] Launched impl_1...
+Run output will be captured here: D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Sun Jan  7 19:52:11 2024] Launched synth_1...
+Run output will be captured here: D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.runs/synth_1/runme.log
+[Sun Jan  7 19:52:11 2024] Launched impl_1...
+Run output will be captured here: D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.runs/impl_1/runme.log
+open_hw_manager
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+ERROR: [Labtoolstcl 44-494] There is no active target available for server at localhost.
+ Targets(s) ", jsn-Basys3-210183B035DDAjsn-Basys3-210183712005A" may be locked by another hw_server.
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+connect_hw_server: Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 1017.285 ; gain = 0.000
+open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210183712005A
+ERROR: [Labtools 27-2269] No devices detected on target localhosINFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210183B035DDA
+INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtoolstcl 44-129] No matching hw_ila_data was found.
+ERROR: [Labtoolstcl 44-513] HW Target shutdown. Closing target: localhost:3121/xilinx_tcf/Digilent/210183B035DDA
+exit
+INFO: [Common 17-206] Exiting Vivado at Sun Jan  7 19:59:02 2024...
+_hw_target: Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2378.059 ; gain = 1360.773
+INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtoolstcl 44-129] No matching hw_ila_data was found.
+ERROR: [Labtoolstcl 44-513] HW Target shutdown. Closing target: localhost:3121/xilinx_tcf/Digilent/210183712005A
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210183B035DDA
+set_property PROGRAM.FILE {D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.runs/impl_1/second_fpga_and_keyboard.bit} [get_hw_devices xc7a35t_0]
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.runs/impl_1/second_fpga_and_keyboard.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+ERROR: [Labtoolstcl 44-513] HW Target shutdown. Closing target: localhost:3121/xilinx_tcf/Digilent/210183B035DDA
+exit
+INFO: [Common 17-206] Exiting Vivado at Sun Jan  7 20:02:19 2024...
