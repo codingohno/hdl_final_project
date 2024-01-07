@@ -60,33 +60,33 @@ module second_fpga_and_keyboard(
       parameter KEY_CODES_M = 9'h3A;
 
     //character codes for inter fgpa transfer
-      parameter CHAR_CODES_Q=5'd0;
-      parameter CHAR_CODES_W=5'd1;
-      parameter CHAR_CODES_E=5'd2;
-      parameter CHAR_CODES_R=5'd3;
-      parameter CHAR_CODES_T=5'd4;
-      parameter CHAR_CODES_Y=5'd5;
-      parameter CHAR_CODES_U=5'd6;
-      parameter CHAR_CODES_I=5'd7;
-      parameter CHAR_CODES_O=5'd8;
-      parameter CHAR_CODES_P=5'd9;
-      parameter CHAR_CODES_A=5'd10;
-      parameter CHAR_CODES_S=5'd11;
-      parameter CHAR_CODES_D=5'd12;
-      parameter CHAR_CODES_F=5'd13;
-      parameter CHAR_CODES_G=5'd14;
-      parameter CHAR_CODES_H=5'd15;
-      parameter CHAR_CODES_J=5'd16;
-      parameter CHAR_CODES_K=5'd17;
-      parameter CHAR_CODES_L=5'd18;
-      parameter CHAR_CODES_Z=5'd19;
-      parameter CHAR_CODES_X=5'd20;
-      parameter CHAR_CODES_C=5'd21;
+      parameter CHAR_CODES_A=5'd1;
+      parameter CHAR_CODES_B=5'd2;
+      parameter CHAR_CODES_C=5'd3;
+      parameter CHAR_CODES_D=5'd4;
+      parameter CHAR_CODES_E=5'd5;
+      parameter CHAR_CODES_F=5'd6;
+      parameter CHAR_CODES_G=5'd7;
+      parameter CHAR_CODES_H=5'd8;
+      parameter CHAR_CODES_I=5'd9;
+      parameter CHAR_CODES_J=5'd10;
+      parameter CHAR_CODES_K=5'd11;
+      parameter CHAR_CODES_L=5'd12;
+      parameter CHAR_CODES_M=5'd13;
+      parameter CHAR_CODES_N=5'd14;
+      parameter CHAR_CODES_O=5'd15;
+      parameter CHAR_CODES_P=5'd16;
+      parameter CHAR_CODES_Q=5'd17;
+      parameter CHAR_CODES_R=5'd18;
+      parameter CHAR_CODES_S=5'd19;
+      parameter CHAR_CODES_T=5'd20;
+      parameter CHAR_CODES_U=5'd21;
       parameter CHAR_CODES_V=5'd22;
-      parameter CHAR_CODES_B=5'd23;
-      parameter CHAR_CODES_N=5'd24;
-      parameter CHAR_CODES_M=5'd25;
-
+      parameter CHAR_CODES_W=5'd23;
+      parameter CHAR_CODES_X=5'd24;
+      parameter CHAR_CODES_Y=5'd25;
+      parameter CHAR_CODES_Z=5'd26;
+      
     //the char_code sending data
     reg [5-1:0] char_code;
     reg [5-1:0] next_send_char;
