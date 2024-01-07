@@ -60,6 +60,7 @@ module second_fpga_and_keyboard(
       parameter KEY_CODES_M = 9'h3A;
 
     //character codes for inter fgpa transfer
+      parameter CHAR_CODES_EMPTY=5'd0;
       parameter CHAR_CODES_A=5'd1;
       parameter CHAR_CODES_B=5'd2;
       parameter CHAR_CODES_C=5'd3;
