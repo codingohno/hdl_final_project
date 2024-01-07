@@ -7,7 +7,7 @@
 
 
 //the initiator of the connection
-module keyboard_to_main_fgpa(
+module keyboard_manager(
     output wire [6:0] display,
     output wire [3:0] digit,
     inout wire PS2_DATA,

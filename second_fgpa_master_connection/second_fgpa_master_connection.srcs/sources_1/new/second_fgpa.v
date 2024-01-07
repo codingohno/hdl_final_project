@@ -210,11 +210,9 @@ module second_fpga_and_keyboard(
 
     //////////////////////////////////////////////////////////////////////////////////connection interface//////////////////////////////////////////////////////////////////////////////////
     //we need a trigger for sending the data
-    wire one_pulse_ready;
-    OnePulse op_ready(one_pulse_ready,been_ready,clk);
     always @ (*) begin
      next_trigger_send=trigger_send;
-        if ((one_pulse_ready && key_down[last_change]) == 1'b1) begin/*a keydown detected and send once only*/
+        if ((been_ready && key_down[last_change]) == 1'b1) begin/*a keydown detected and send once only*/
             next_trigger_send=1'b1;
         end
         else begin
