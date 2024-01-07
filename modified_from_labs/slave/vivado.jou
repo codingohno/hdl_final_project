@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sun Jan  7 15:00:48 2024
+# Process ID: 28048
+# Current directory: D:/hdl/final proj/slave
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent19492 D:\hdl\final proj\slave\slave.xpr
+# Log file: D:/hdl/final proj/slave/vivado.log
+# Journal file: D:/hdl/final proj/slave\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project {D:/hdl/final proj/slave/slave.xpr}
+update_compile_order -fileset sources_1
+save_project_as main_fgpa_slave_connection {D:/hdl/final proj/main_fgpa_slave_connection} -force
+save_project_as second_fgpa_master_connection {D:/hdl/final proj/second_fgpa_master_connection} -force
+export_ip_user_files -of_objects  [get_files {{D:/hdl/final proj/reduce_comunication_time/master_fpga/master_fpga.srcs/sources_1/chip2chip_master/top.v}}] -no_script -reset -force -quiet
+remove_files  {{D:/hdl/final proj/reduce_comunication_time/master_fpga/master_fpga.srcs/sources_1/chip2chip_master/top.v}}
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files {{D:/hdl/final proj/reduce_comunication_time/master_fpga/master_fpga.srcs/sources_1/chip2chip_master/master_control.v}}] -no_script -reset -force -quiet
+remove_files  {{D:/hdl/final proj/reduce_comunication_time/master_fpga/master_fpga.srcs/sources_1/chip2chip_master/master_control.v}}
+export_ip_user_files -of_objects  [get_files {{D:/hdl/final proj/reduce_comunication_time/master_fpga/master_fpga.srcs/sources_1/chip2chip_master/counter.v}}] -no_script -reset -force -quiet
+remove_files  {{D:/hdl/final proj/reduce_comunication_time/master_fpga/master_fpga.srcs/sources_1/chip2chip_master/counter.v}}
+add_files -norecurse {{D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.srcs/sources_1/new/master_control.v} {D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.srcs/sources_1/new/counter.v}}
+update_compile_order -fileset sources_1
+add_files -norecurse {{D:/hdl/final proj/second_fgpa_master_connection/second_fgpa_master_connection.srcs/sources_1/new/top.v}}
+update_compile_order -fileset sources_1

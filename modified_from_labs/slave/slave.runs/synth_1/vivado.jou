@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sun Jan  7 06:05:16 2024
+# Process ID: 24924
+# Current directory: D:/hdl/final proj/slave/slave.runs/synth_1
+# Command line: vivado.exe -log keyboard_to_master_chip.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source keyboard_to_master_chip.tcl
+# Log file: D:/hdl/final proj/slave/slave.runs/synth_1/keyboard_to_master_chip.vds
+# Journal file: D:/hdl/final proj/slave/slave.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source keyboard_to_master_chip.tcl -notrace
