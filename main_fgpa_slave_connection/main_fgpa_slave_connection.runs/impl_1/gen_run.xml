@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1704891791">
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1704894662">
+  <File Type="OPT-HWDEF" Name="Top.hwdef"/>
+  <File Type="ROUTE-BUS-SKEW" Name="Top_bus_skew_routed.rpt"/>
+  <File Type="PA-DCP" Name="Top.dcp"/>
   <File Type="BITSTR-BMM" Name="Top_bd.bmm"/>
   <File Type="OPT-METHODOLOGY-DRC" Name="Top_methodology_drc_opted.rpt"/>
   <File Type="INIT-TIMING" Name="Top_timing_summary_init.rpt"/>
@@ -10,7 +13,6 @@
   <File Type="ROUTE-PWR-SUM" Name="Top_power_summary_routed.pb"/>
   <File Type="REPORTS-TCL" Name="Top_reports.tcl"/>
   <File Type="OPT-DRC" Name="Top_drc_opted.rpt"/>
-  <File Type="OPT-HWDEF" Name="Top.hwdef"/>
   <File Type="PWROPT-DCP" Name="Top_pwropt.dcp"/>
   <File Type="PWROPT-DRC" Name="Top_drc_pwropted.rpt"/>
   <File Type="PWROPT-TIMING" Name="Top_timing_summary_pwropted.rpt"/>
@@ -48,7 +50,6 @@
   <File Type="ROUTE-TIMING-RPX" Name="Top_timing_summary_routed.rpx"/>
   <File Type="ROUTE-SIMILARITY" Name="Top_incremental_reuse_routed.rpt"/>
   <File Type="ROUTE-CLK" Name="Top_clock_utilization_routed.rpt"/>
-  <File Type="ROUTE-BUS-SKEW" Name="Top_bus_skew_routed.rpt"/>
   <File Type="ROUTE-BUS-SKEW-PB" Name="Top_bus_skew_routed.pb"/>
   <File Type="ROUTE-BUS-SKEW-RPX" Name="Top_bus_skew_routed.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="Top_postroute_physopt.dcp"/>
@@ -106,13 +107,6 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/top.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/vga_top.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

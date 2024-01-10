@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Wed Jan 10 21:06:54 2024
+| Date         : Wed Jan 10 21:52:35 2024
 | Host         : DESKTOP-NPIMFVD running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Top_control_sets_placed.rpt
 | Design       : Top
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              34 |           11 |
+| No           | No                    | No                     |              34 |           12 |
 | No           | No                    | Yes                    |              78 |           26 |
 | No           | Yes                   | No                     |              58 |           24 |
-| Yes          | No                    | No                     |             512 |          138 |
-| Yes          | No                    | Yes                    |             577 |          164 |
-| Yes          | Yes                   | No                     |              30 |           11 |
+| Yes          | No                    | No                     |             512 |          135 |
+| Yes          | No                    | Yes                    |             577 |          165 |
+| Yes          | Yes                   | No                     |              30 |           12 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -75,31 +75,31 @@ Table of Contents
 +------------------------------------------------------+-----------------------------------------------------------+---------------------------------+------------------+----------------+--------------+
 |  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/ps2_clk_s1        | op0/rst                         |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/ps2_data_s1       | op0/rst                         |                1 |              1 |         1.00 |
-|  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[3]_2 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
-|  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[1]_2 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
 |  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[1]_0 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
 |  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[1]_1 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
 |  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[3]_1 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
 |  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[0]_0 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
+|  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[1]_2 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
+|  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[3]_2 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/lock_status0                     | op0/rst                         |                1 |              2 |         2.00 |
 |  CD0/Q[0]                                            |                                                           | op0/rst                         |                2 |              2 |         1.00 |
-|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/bits_count        | op0/rst                         |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG                                       | HANGMAN_GAME_LOGIC/num_of_revealed_letters[3]_i_1_n_0     | op0/rst                         |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG                                       | test/slave_receiver/sl_ctrl_0/next_data                   | op0/rst                         |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG                                       | HANGMAN_GAME_LOGIC/num_of_revealed_letters[3]_i_1_n_0     | op0/rst                         |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/bits_count        | op0/rst                         |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG                                       | test/kb_main/key_de/E[0]                                  | op0/rst                         |                3 |              5 |         1.67 |
+|  clk_IBUF_BUFG                                       | test/slave_receiver/sl_ctrl_0/next_data                   | op0/rst                         |                2 |              5 |         2.50 |
 |  clk_IBUF_BUFG                                       | test/slave_receiver/sl_ctrl_0/next_state                  | op0/rst                         |                2 |              6 |         3.00 |
 |  clk_IBUF_BUFG                                       | svn_seg/FSM_sequential_digit[2]_i_1_n_0                   | op0/rst                         |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/rx_finish         | op0/rst                         |                2 |              8 |         4.00 |
-|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/rx_valid          | op0/rst                         |                3 |              8 |         2.67 |
-|  CD0/Q[0]                                            |                                                           | VC0/pixel_cnt[9]_i_1_n_0        |                4 |             10 |         2.50 |
-|  CD0/Q[0]                                            | VC0/line_cnt                                              | VC0/line_cnt[9]_i_1_n_0         |                3 |             10 |         3.33 |
-|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/frame[10]_i_1_n_0 | op0/rst                         |                3 |             11 |         3.67 |
-|  clk_IBUF_BUFG                                       | test/kb_main/key_de/next_key                              | op0/rst                         |                6 |             23 |         3.83 |
-|  clk_IBUF_BUFG                                       |                                                           | op0/signal_single_pulse_reg_0   |                6 |             27 |         4.50 |
-|  clk_IBUF_BUFG                                       |                                                           |                                 |               11 |             34 |         3.09 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/rx_valid          | op0/rst                         |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/rx_finish         | op0/rst                         |                1 |              8 |         8.00 |
+|  CD0/Q[0]                                            |                                                           | VC0/pixel_cnt[9]_i_1_n_0        |                5 |             10 |         2.00 |
+|  CD0/Q[0]                                            | VC0/line_cnt                                              | VC0/line_cnt[9]_i_1_n_0         |                4 |             10 |         2.50 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/frame[10]_i_1_n_0 | op0/rst                         |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/next_key                              | op0/rst                         |                7 |             23 |         3.29 |
+|  clk_IBUF_BUFG                                       |                                                           | op0/signal_single_pulse_reg_0   |                5 |             27 |         5.40 |
+|  clk_IBUF_BUFG                                       |                                                           |                                 |               12 |             34 |         2.83 |
 |  clk_IBUF_BUFG                                       |                                                           | op0/rst                         |               32 |             91 |         2.84 |
-|  clk_IBUF_BUFG                                       | test/kb_main/key_de/op/E[0]                               | op0/rst                         |              142 |            512 |         3.61 |
-|  clk_IBUF_BUFG                                       | test/kb_main/new_press_detector/op0/E[0]                  |                                 |              138 |            512 |         3.71 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/op/E[0]                               | op0/rst                         |              144 |            512 |         3.56 |
+|  clk_IBUF_BUFG                                       | test/kb_main/new_press_detector/op0/E[0]                  |                                 |              135 |            512 |         3.79 |
 +------------------------------------------------------+-----------------------------------------------------------+---------------------------------+------------------+----------------+--------------+
 
 

@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date             : Wed Jan 10 21:07:46 2024
+| Date             : Wed Jan 10 21:53:27 2024
 | Host             : DESKTOP-NPIMFVD running 64-bit major release  (build 9200)
 | Command          : report_power -file Top_power_routed.rpt -pb Top_power_summary_routed.pb -rpx Top_power_routed.rpx
 | Design           : Top
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 4.085        |
+| Total On-Chip Power (W)  | 7.412        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 4.000        |
-| Device Static (W)        | 0.085        |
+| Dynamic (W)              | 7.304        |
+| Device Static (W)        | 0.108        |
 | Effective TJA (C/W)      | 5.0          |
-| Max Ambient (C)          | 64.6         |
-| Junction Temperature (C) | 45.4         |
+| Max Ambient (C)          | 47.9         |
+| Junction Temperature (C) | 62.1         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,17 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.774 |     2846 |       --- |             --- |
-|   LUT as Logic |     0.686 |     1165 |     20800 |            5.60 |
+| Slice Logic    |     0.761 |     2857 |       --- |             --- |
+|   LUT as Logic |     0.673 |     1169 |     20800 |            5.62 |
 |   Register     |     0.047 |     1289 |     41600 |            3.10 |
 |   CARRY4       |     0.032 |       15 |      8150 |            0.18 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
 |   F7/F8 Muxes  |     0.003 |      215 |     32600 |            0.66 |
 |   Others       |     0.000 |       39 |       --- |             --- |
-| Signals        |     0.913 |     1742 |       --- |             --- |
-| I/O            |     2.313 |       41 |       106 |           38.68 |
-| Static Power   |     0.085 |          |           |                 |
-| Total          |     4.085 |          |           |                 |
+| Signals        |     0.970 |     1757 |       --- |             --- |
+| I/O            |     5.572 |       53 |       106 |           50.00 |
+| Static Power   |     0.108 |          |           |                 |
+| Total          |     7.412 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,16 +72,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     1.758 |       1.737 |      0.021 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.097 |       0.083 |      0.014 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.642 |       0.641 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     1.821 |       1.781 |      0.040 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.218 |       0.202 |      0.016 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     1.564 |       1.563 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -139,25 +139,25 @@ Table of Contents
 +----------------------+-----------+
 | Name                 | Power (W) |
 +----------------------+-----------+
-| Top                  |     4.000 |
-|   CD0                |     0.064 |
-|   HANGMAN_GAME_LOGIC |     0.187 |
-|   VC0                |     0.290 |
+| Top                  |     7.304 |
+|   CD0                |     0.072 |
+|   HANGMAN_GAME_LOGIC |     0.221 |
+|   VC0                |     0.293 |
 |   db0                |     0.014 |
 |   db1                |     0.013 |
-|   db2                |     0.014 |
+|   db2                |     0.013 |
 |   db3                |     0.013 |
-|   op0                |     0.063 |
+|   op0                |     0.067 |
 |   op1                |     0.001 |
-|   op2                |     0.002 |
-|   op3                |     0.002 |
-|   svn_seg            |     0.083 |
-|   test               |     1.156 |
-|     kb_main          |     0.830 |
-|       key_de         |     0.813 |
-|     slave_receiver   |     0.326 |
-|       op1            |     0.014 |
-|       sl_ctrl_0      |     0.312 |
+|   op2                |     0.001 |
+|   op3                |     0.001 |
+|   svn_seg            |     0.094 |
+|   test               |     1.142 |
+|     kb_main          |     0.831 |
+|       key_de         |     0.815 |
+|     slave_receiver   |     0.311 |
+|       op1            |     0.012 |
+|       sl_ctrl_0      |     0.299 |
 +----------------------+-----------+
 
 

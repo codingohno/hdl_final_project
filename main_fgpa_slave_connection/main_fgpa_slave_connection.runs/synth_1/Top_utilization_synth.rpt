@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Wed Jan 10 21:05:35 2024
+| Date         : Wed Jan 10 21:38:10 2024
 | Host         : DESKTOP-NPIMFVD running 64-bit major release  (build 9200)
 | Command      : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
 | Design       : Top
@@ -30,8 +30,8 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             | 1171 |     0 |     20800 |  5.63 |
-|   LUT as Logic          | 1171 |     0 |     20800 |  5.63 |
+| Slice LUTs*             | 1176 |     0 |     20800 |  5.65 |
+|   LUT as Logic          | 1176 |     0 |     20800 |  5.65 |
 |   LUT as Memory         |    0 |     0 |      9600 |  0.00 |
 | Slice Registers         | 1289 |     0 |     41600 |  3.10 |
 |   Register as Flip Flop | 1283 |     0 |     41600 |  3.08 |
@@ -90,7 +90,7 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |   41 |     0 |       106 | 38.68 |
+| Bonded IOB                  |   53 |     0 |       106 | 50.00 |
 | Bonded IPADs                |    0 |     0 |        10 |  0.00 |
 | Bonded OPADs                |    0 |     0 |         4 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |         5 |  0.00 |
@@ -151,14 +151,14 @@ Table of Contents
 +----------+------+---------------------+
 | FDCE     |  646 |        Flop & Latch |
 | FDRE     |  625 |        Flop & Latch |
-| LUT4     |  611 |                 LUT |
+| LUT4     |  618 |                 LUT |
 | LUT6     |  385 |                 LUT |
 | MUXF7    |  157 |               MuxFx |
-| LUT5     |  143 |                 LUT |
+| LUT5     |  141 |                 LUT |
+| LUT2     |   72 |                 LUT |
 | MUXF8    |   68 |               MuxFx |
-| LUT2     |   68 |                 LUT |
-| LUT3     |   64 |                 LUT |
-| OBUF     |   27 |                  IO |
+| LUT3     |   66 |                 LUT |
+| OBUF     |   39 |                  IO |
 | LUT1     |   22 |                 LUT |
 | CARRY4   |   15 |          CarryLogic |
 | IBUF     |   14 |                  IO |

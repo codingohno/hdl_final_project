@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Wed Jan 10 21:03:18 2024
-# Process ID: 12524
+# Start of session at: Wed Jan 10 21:35:14 2024
+# Process ID: 18132
 # Current directory: D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.runs/synth_1
 # Command line: vivado.exe -log Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
 # Log file: D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.runs/synth_1/Top.vds
@@ -17,56 +17,54 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 29748
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1102]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1103]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1104]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1105]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1140]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1142]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1143]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1144]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1145]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1146]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1147]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1148]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1149]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1150]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1151]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1152]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1153]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1154]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1155]
-WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1156]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1492]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1493]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1494]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1495]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1496]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1497]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1498]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1500]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1501]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1502]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1503]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1505]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1506]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1507]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1508]
-WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1509]
-CRITICAL WARNING: [Synth 8-2490] overwriting previous definition of module vga_controller [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1802]
-CRITICAL WARNING: [Synth 8-2490] overwriting previous definition of module clk_div [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1872]
+INFO: [Synth 8-7075] Helper process launched with PID 27980
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1128]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1129]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1130]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1131]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1166]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1168]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1169]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1170]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1171]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1172]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1173]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1174]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1175]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1176]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1177]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1178]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1179]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1180]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1181]
+WARNING: [Synth 8-2507] parameter declaration becomes local in Ps2Interface with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1182]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1518]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1519]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1520]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1521]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1522]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1523]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1524]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1526]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1527]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1528]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1529]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1531]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1532]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1533]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1534]
+WARNING: [Synth 8-2507] parameter declaration becomes local in KeyboardCtrl with formal parameter declaration list [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1535]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 1015.688 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1015.012 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'Top' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:6]
 	Parameter row bound to: 5'b01111 
 	Parameter col bound to: 7'b0011101 
-INFO: [Synth 8-6157] synthesizing module 'debounce' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1019]
-INFO: [Synth 8-6155] done synthesizing module 'debounce' (1#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1019]
-INFO: [Synth 8-6157] synthesizing module 'OnePulse' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1032]
-INFO: [Synth 8-6155] done synthesizing module 'OnePulse' (2#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1032]
-INFO: [Synth 8-6157] synthesizing module 'keyboard_manager' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:695]
+INFO: [Synth 8-6157] synthesizing module 'debounce' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1045]
+INFO: [Synth 8-6155] done synthesizing module 'debounce' (1#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1045]
+INFO: [Synth 8-6157] synthesizing module 'OnePulse' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1058]
+INFO: [Synth 8-6155] done synthesizing module 'OnePulse' (2#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1058]
+INFO: [Synth 8-6157] synthesizing module 'keyboard_manager' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:721]
 INFO: [Synth 8-6157] synthesizing module 'connection_slave' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/top.v:25]
 INFO: [Synth 8-6157] synthesizing module 'onepulse_slave' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/top.v:14]
 INFO: [Synth 8-6155] done synthesizing module 'onepulse_slave' (3#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/top.v:14]
@@ -79,7 +77,7 @@ INFO: [Synth 8-6157] synthesizing module 'counter' [D:/hdl/final proj/main_fgpa_
 INFO: [Synth 8-6155] done synthesizing module 'counter' (4#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/counter.v:18]
 INFO: [Synth 8-6155] done synthesizing module 'slave_control' (5#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/slave_control.v:2]
 INFO: [Synth 8-6155] done synthesizing module 'connection_slave' (6#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/top.v:25]
-INFO: [Synth 8-6157] synthesizing module 'keyboard_main' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:749]
+INFO: [Synth 8-6157] synthesizing module 'keyboard_main' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:775]
 	Parameter KEY_CODES_Q bound to: 9'b000010101 
 	Parameter KEY_CODES_W bound to: 9'b000011101 
 	Parameter KEY_CODES_E bound to: 9'b000100100 
@@ -133,7 +131,7 @@ INFO: [Synth 8-6157] synthesizing module 'keyboard_main' [D:/hdl/final proj/main
 	Parameter CHAR_CODES_X bound to: 5'b11000 
 	Parameter CHAR_CODES_Y bound to: 5'b11001 
 	Parameter CHAR_CODES_Z bound to: 5'b11010 
-INFO: [Synth 8-6157] synthesizing module 'KeyboardDecoder' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1659]
+INFO: [Synth 8-6157] synthesizing module 'KeyboardDecoder' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1685]
 	Parameter INIT bound to: 2'b00 
 	Parameter WAIT_FOR_SIGNAL bound to: 2'b01 
 	Parameter GET_SIGNAL_DOWN bound to: 2'b10 
@@ -141,7 +139,7 @@ INFO: [Synth 8-6157] synthesizing module 'KeyboardDecoder' [D:/hdl/final proj/ma
 	Parameter IS_INIT bound to: 8'b10101010 
 	Parameter IS_EXTEND bound to: 8'b11100000 
 	Parameter IS_BREAK bound to: 8'b11110000 
-INFO: [Synth 8-6157] synthesizing module 'KeyboardCtrl' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1475]
+INFO: [Synth 8-6157] synthesizing module 'KeyboardCtrl' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1501]
 	Parameter SYSCLK_FREQUENCY_HZ bound to: 100000000 - type: integer 
 	Parameter RESET bound to: 3'b000 
 	Parameter SEND_CMD bound to: 3'b001 
@@ -159,7 +157,7 @@ INFO: [Synth 8-6157] synthesizing module 'KeyboardCtrl' [D:/hdl/final proj/main_
 	Parameter CAPS_LOCK bound to: 8'b01011000 
 	Parameter NUM_LOCK bound to: 8'b01110111 
 	Parameter SCR_LOCK bound to: 8'b01111110 
-INFO: [Synth 8-6157] synthesizing module 'Ps2Interface' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1075]
+INFO: [Synth 8-6157] synthesizing module 'Ps2Interface' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1101]
 	Parameter SYSCLK_FREQUENCY_HZ bound to: 100000000 - type: integer 
 	Parameter CLOCK_CNT_100US bound to: 10000 - type: integer 
 	Parameter CLOCK_CNT_20US bound to: 2000 - type: integer 
@@ -187,28 +185,28 @@ INFO: [Synth 8-6157] synthesizing module 'IOBUF' [D:/Vivado/2020.2/scripts/rt/da
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
 INFO: [Synth 8-6155] done synthesizing module 'IOBUF' (7#1) [D:/Vivado/2020.2/scripts/rt/data/unisim_comp.v:36242]
-INFO: [Synth 8-6155] done synthesizing module 'Ps2Interface' (8#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1075]
-INFO: [Synth 8-6155] done synthesizing module 'KeyboardCtrl' (9#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1475]
-INFO: [Synth 8-226] default block is never used [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1729]
-INFO: [Synth 8-226] default block is never used [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1739]
-INFO: [Synth 8-226] default block is never used [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1751]
-INFO: [Synth 8-226] default block is never used [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1761]
-INFO: [Synth 8-226] default block is never used [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1771]
-INFO: [Synth 8-6155] done synthesizing module 'KeyboardDecoder' (10#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1659]
-INFO: [Synth 8-6157] synthesizing module 'new_press' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:924]
-INFO: [Synth 8-6155] done synthesizing module 'new_press' (11#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:924]
-INFO: [Synth 8-6155] done synthesizing module 'keyboard_main' (12#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:749]
-INFO: [Synth 8-6155] done synthesizing module 'keyboard_manager' (13#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:695]
-INFO: [Synth 8-6157] synthesizing module 'clk_div' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1872]
+INFO: [Synth 8-6155] done synthesizing module 'Ps2Interface' (8#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1101]
+INFO: [Synth 8-6155] done synthesizing module 'KeyboardCtrl' (9#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1501]
+INFO: [Synth 8-226] default block is never used [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1755]
+INFO: [Synth 8-226] default block is never used [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1765]
+INFO: [Synth 8-226] default block is never used [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1777]
+INFO: [Synth 8-226] default block is never used [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1787]
+INFO: [Synth 8-226] default block is never used [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1797]
+INFO: [Synth 8-6155] done synthesizing module 'KeyboardDecoder' (10#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1685]
+INFO: [Synth 8-6157] synthesizing module 'new_press' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:950]
+INFO: [Synth 8-6155] done synthesizing module 'new_press' (11#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:950]
+INFO: [Synth 8-6155] done synthesizing module 'keyboard_main' (12#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:775]
+INFO: [Synth 8-6155] done synthesizing module 'keyboard_manager' (13#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:721]
+INFO: [Synth 8-6157] synthesizing module 'clk_div' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1898]
 	Parameter n bound to: 2 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'clk_div' (14#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1872]
+INFO: [Synth 8-6155] done synthesizing module 'clk_div' (14#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1898]
 INFO: [Synth 8-6157] synthesizing module 'pixel_gen' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/pixel_gen.v:3]
 INFO: [Synth 8-6157] synthesizing module 'ascii_rom' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/ascii_rom.v:22]
 INFO: [Synth 8-6155] done synthesizing module 'ascii_rom' (15#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/ascii_rom.v:22]
 INFO: [Synth 8-6155] done synthesizing module 'pixel_gen' (16#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/pixel_gen.v:3]
-INFO: [Synth 8-6157] synthesizing module 'vga_controller' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1802]
-INFO: [Synth 8-6155] done synthesizing module 'vga_controller' (17#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1802]
-INFO: [Synth 8-6157] synthesizing module 'game_logic_core' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:342]
+INFO: [Synth 8-6157] synthesizing module 'vga_controller' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1828]
+INFO: [Synth 8-6155] done synthesizing module 'vga_controller' (17#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:1828]
+INFO: [Synth 8-6157] synthesizing module 'game_logic_core' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:346]
 	Parameter CHAR_CODES_EMPTY bound to: 5'b00000 
 	Parameter CHAR_CODES_A bound to: 5'b00001 
 	Parameter CHAR_CODES_B bound to: 5'b00010 
@@ -242,23 +240,23 @@ INFO: [Synth 8-6157] synthesizing module 'game_logic_core' [D:/hdl/final proj/ma
 	Parameter STATE_SECOND_PLAYER bound to: 4'b0011 
 	Parameter STATE_FIRST_PLAYER_WIN bound to: 4'b0100 
 	Parameter STATE_SECOND_PLAYER_WIN bound to: 4'b0101 
-INFO: [Synth 8-6155] done synthesizing module 'game_logic_core' (18#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:342]
-INFO: [Synth 8-6157] synthesizing module 'SevenSegment' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:947]
-INFO: [Synth 8-6155] done synthesizing module 'SevenSegment' (19#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:947]
+INFO: [Synth 8-6155] done synthesizing module 'game_logic_core' (18#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:346]
+INFO: [Synth 8-6157] synthesizing module 'SevenSegment' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:973]
+INFO: [Synth 8-6155] done synthesizing module 'SevenSegment' (19#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:973]
 INFO: [Synth 8-6155] done synthesizing module 'Top' (20#1) [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:6]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:19 . Memory (MB): peak = 1015.688 ; gain = 0.000
+Finished RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:20 . Memory (MB): peak = 1015.012 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 1015.688 ; gain = 0.000
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:22 . Memory (MB): peak = 1015.012 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 1015.688 ; gain = 0.000
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:22 . Memory (MB): peak = 1015.012 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.137 . Memory (MB): peak = 1015.688 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.149 . Memory (MB): peak = 1015.012 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -367,27 +365,27 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1059.172 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1059.816 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 2 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.030 . Memory (MB): peak = 1059.172 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.277 . Memory (MB): peak = 1059.816 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1059.172 ; gain = 43.484
+Finished Constraint Validation : Time (s): cpu = 00:00:33 ; elapsed = 00:00:46 . Memory (MB): peak = 1059.816 ; gain = 44.805
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1059.172 ; gain = 43.484
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:33 ; elapsed = 00:00:46 . Memory (MB): peak = 1059.816 ; gain = 44.805
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 1059.172 ; gain = 43.484
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:46 . Memory (MB): peak = 1059.816 ; gain = 44.805
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'slave_control'
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'Ps2Interface'
@@ -454,19 +452,19 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 
                  iSTATE2 |                              100 |                             0111
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'digit_reg' using encoding 'sequential' in module 'SevenSegment'
-WARNING: [Synth 8-327] inferring latch for variable 'keyboard2_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:122]
-WARNING: [Synth 8-327] inferring latch for variable 'keyboard2_l_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:122]
-WARNING: [Synth 8-327] inferring latch for variable 'keyboard3_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:123]
-WARNING: [Synth 8-327] inferring latch for variable 'keyboard3_l_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:123]
-WARNING: [Synth 8-327] inferring latch for variable 'keyboard4_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:124]
-WARNING: [Synth 8-327] inferring latch for variable 'keyboard4_l_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:124]
-WARNING: [Synth 8-327] inferring latch for variable 'keyboard5_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:125]
-WARNING: [Synth 8-327] inferring latch for variable 'keyboard5_l_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:125]
-WARNING: [Synth 8-327] inferring latch for variable 'keyboard6_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:126]
-WARNING: [Synth 8-327] inferring latch for variable 'keyboard1_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:121]
-WARNING: [Synth 8-327] inferring latch for variable 'keyboard1_l_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:121]
+WARNING: [Synth 8-327] inferring latch for variable 'keyboard2_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:124]
+WARNING: [Synth 8-327] inferring latch for variable 'keyboard2_l_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:124]
+WARNING: [Synth 8-327] inferring latch for variable 'keyboard3_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:125]
+WARNING: [Synth 8-327] inferring latch for variable 'keyboard3_l_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:125]
+WARNING: [Synth 8-327] inferring latch for variable 'keyboard4_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:126]
+WARNING: [Synth 8-327] inferring latch for variable 'keyboard4_l_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:126]
+WARNING: [Synth 8-327] inferring latch for variable 'keyboard5_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:127]
+WARNING: [Synth 8-327] inferring latch for variable 'keyboard5_l_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:127]
+WARNING: [Synth 8-327] inferring latch for variable 'keyboard6_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:128]
+WARNING: [Synth 8-327] inferring latch for variable 'keyboard1_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:123]
+WARNING: [Synth 8-327] inferring latch for variable 'keyboard1_l_reg' [D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v:123]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:36 ; elapsed = 00:00:41 . Memory (MB): peak = 1059.172 ; gain = 43.484
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:37 ; elapsed = 00:00:52 . Memory (MB): peak = 1059.816 ; gain = 44.805
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -505,6 +503,8 @@ Detailed RTL Component Info :
 	   7 Input    7 Bit        Muxes := 1     
 	   2 Input    7 Bit        Muxes := 15    
 	   3 Input    7 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 2     
+	   8 Input    6 Bit        Muxes := 2     
 	   2 Input    5 Bit        Muxes := 2     
 	  27 Input    5 Bit        Muxes := 1     
 	   3 Input    5 Bit        Muxes := 2     
@@ -540,7 +540,7 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:12 ; elapsed = 00:01:20 . Memory (MB): peak = 1059.172 ; gain = 43.484
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:17 ; elapsed = 00:01:55 . Memory (MB): peak = 1059.816 ; gain = 44.805
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -552,8 +552,6 @@ ROM: Preliminary Mapping	Report
 +------------+------------+---------------+----------------+
 |ascii_rom   | data       | 2048x8        | LUT            | 
 |pixel_gen   | rom/data   | 2048x8        | LUT            | 
-|pixel_gen   | rom/data   | 2048x8        | LUT            | 
-|pixel_gen   | rom/data   | 2048x8        | LUT            | 
 +------------+------------+---------------+----------------+
 
 ---------------------------------------------------------------------------------
@@ -563,19 +561,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:25 ; elapsed = 00:01:33 . Memory (MB): peak = 1059.172 ; gain = 43.484
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:30 ; elapsed = 00:02:08 . Memory (MB): peak = 1059.816 ; gain = 44.805
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:29 ; elapsed = 00:01:37 . Memory (MB): peak = 1059.172 ; gain = 43.484
+Finished Timing Optimization : Time (s): cpu = 00:01:33 ; elapsed = 00:02:12 . Memory (MB): peak = 1059.816 ; gain = 44.805
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:32 ; elapsed = 00:01:41 . Memory (MB): peak = 1096.922 ; gain = 81.234
+Finished Technology Mapping : Time (s): cpu = 00:01:36 ; elapsed = 00:02:15 . Memory (MB): peak = 1092.410 ; gain = 77.398
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -593,37 +591,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:41 ; elapsed = 00:01:50 . Memory (MB): peak = 1110.527 ; gain = 94.840
+Finished IO Insertion : Time (s): cpu = 00:01:45 ; elapsed = 00:02:23 . Memory (MB): peak = 1107.227 ; gain = 92.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:41 ; elapsed = 00:01:50 . Memory (MB): peak = 1110.527 ; gain = 94.840
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:45 ; elapsed = 00:02:23 . Memory (MB): peak = 1107.227 ; gain = 92.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:42 ; elapsed = 00:01:51 . Memory (MB): peak = 1110.527 ; gain = 94.840
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:45 ; elapsed = 00:02:24 . Memory (MB): peak = 1107.227 ; gain = 92.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:42 ; elapsed = 00:01:51 . Memory (MB): peak = 1110.527 ; gain = 94.840
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:45 ; elapsed = 00:02:24 . Memory (MB): peak = 1107.227 ; gain = 92.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:42 ; elapsed = 00:01:51 . Memory (MB): peak = 1110.527 ; gain = 94.840
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:45 ; elapsed = 00:02:24 . Memory (MB): peak = 1107.227 ; gain = 92.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:42 ; elapsed = 00:01:51 . Memory (MB): peak = 1110.527 ; gain = 94.840
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:45 ; elapsed = 00:02:24 . Memory (MB): peak = 1107.227 ; gain = 92.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -642,10 +640,10 @@ Report Cell Usage:
 |1     |BUFG   |     1|
 |2     |CARRY4 |    15|
 |3     |LUT1   |    22|
-|4     |LUT2   |    68|
-|5     |LUT3   |    64|
-|6     |LUT4   |   611|
-|7     |LUT5   |   143|
+|4     |LUT2   |    72|
+|5     |LUT3   |    66|
+|6     |LUT4   |   618|
+|7     |LUT5   |   141|
 |8     |LUT6   |   385|
 |9     |MUXF7  |   157|
 |10    |MUXF8  |    68|
@@ -656,31 +654,31 @@ Report Cell Usage:
 |15    |LDC    |     6|
 |16    |IBUF   |    12|
 |17    |IOBUF  |     2|
-|18    |OBUF   |    27|
+|18    |OBUF   |    39|
 +------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:42 ; elapsed = 00:01:51 . Memory (MB): peak = 1110.527 ; gain = 94.840
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:45 ; elapsed = 00:02:24 . Memory (MB): peak = 1107.227 ; gain = 92.215
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 11 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:20 ; elapsed = 00:01:45 . Memory (MB): peak = 1110.527 ; gain = 51.355
-Synthesis Optimization Complete : Time (s): cpu = 00:01:42 ; elapsed = 00:01:51 . Memory (MB): peak = 1110.527 ; gain = 94.840
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:24 ; elapsed = 00:02:14 . Memory (MB): peak = 1107.227 ; gain = 47.410
+Synthesis Optimization Complete : Time (s): cpu = 00:01:46 ; elapsed = 00:02:24 . Memory (MB): peak = 1107.227 ; gain = 92.215
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.096 . Memory (MB): peak = 1118.539 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.103 . Memory (MB): peak = 1115.305 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 248 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1118.629 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1115.305 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 8 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 2 instances
   LDC => LDCE: 6 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-72 Infos, 79 Warnings, 34 Critical Warnings and 0 Errors encountered.
+72 Infos, 79 Warnings, 32 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:55 ; elapsed = 00:02:07 . Memory (MB): peak = 1118.629 ; gain = 102.941
+synth_design: Time (s): cpu = 00:01:58 ; elapsed = 00:02:41 . Memory (MB): peak = 1115.305 ; gain = 100.293
 INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
 INFO: [Common 17-1381] The checkpoint 'D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.runs/synth_1/Top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Jan 10 21:05:35 2024...
+INFO: [Common 17-206] Exiting Vivado at Wed Jan 10 21:38:10 2024...

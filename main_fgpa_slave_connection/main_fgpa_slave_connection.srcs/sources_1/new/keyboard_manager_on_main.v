@@ -21,11 +21,13 @@ module Top(
     output notice_slave_second_fpga,
     output ack_second_fpga,
 
-    //the game control
+    //the game control and game status output
     //----------------some buttons to do the job-----need to debounce and one pulse-----------------
     input unde_game_start,
     input unde_input_done,
     input unde_restart_game,
+    output [6-1:0] player1_lights,
+    output [6-1:0] player2_lights,
     
     //JERRY 
     //vga
@@ -325,7 +327,9 @@ module Top(
     restart_game,
 
     num_of_revealed_letters,
-    flatten_chosen_word//6 char each char is encoded by 5 bits
+    flatten_chosen_word,//6 char each char is encoded by 5 bits
+    player1_lights,
+    player2_lights
   );
 
   SevenSegment svn_seg(
@@ -357,7 +361,10 @@ module game_logic_core(
   input restart_game,
 
   output reg [4-1:0] num_of_revealed_letters,
-  output[5*6-1:0] flatten_chosen_word//6 char each char is encoded by 5 bits
+  output[5*6-1:0] flatten_chosen_word,//6 char each char is encoded by 5 bits
+  output[6-1:0] player1_lights,
+  output[6-1:0] player2_lights
+
 );
   reg [5-1:0] chosen_word[6-1:0];
   assign flatten_chosen_word={
@@ -688,6 +695,25 @@ module game_logic_core(
       endcase
     end
   end
+
+  //combinational decision on the player 1 and 2 lights
+  assign player1_lights=(player1_dead_score==4'd0)?6'b000000:
+                        (player1_dead_score==4'd1)?6'b000001:
+                        (player1_dead_score==4'd2)?6'b000011:
+                        (player1_dead_score==4'd3)?6'b000111:
+                        (player1_dead_score==4'd4)?6'b001111:
+                        (player1_dead_score==4'd5)?6'b011111:
+                        (player1_dead_score==4'd6)?6'b111111:
+                        6'b101010;
+                        
+  assign player2_lights=(player2_dead_score==4'd0)?6'b000000:
+                        (player2_dead_score==4'd1)?6'b000001:
+                        (player2_dead_score==4'd2)?6'b000011:
+                        (player2_dead_score==4'd3)?6'b000111:
+                        (player2_dead_score==4'd4)?6'b001111:
+                        (player2_dead_score==4'd5)?6'b011111:
+                        (player2_dead_score==4'd6)?6'b111111:
+                        6'b101010;
 
 endmodule
 

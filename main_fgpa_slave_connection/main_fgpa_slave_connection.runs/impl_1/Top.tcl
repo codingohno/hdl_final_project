@@ -125,28 +125,12 @@ set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 2
   set_param xicom.use_bs_reader 1
-OPTRACE "create in-memory project" START { }
-  create_project -in_memory -part xc7a35tcpg236-1
-  set_property design_mode GateLvl [current_fileset]
-  set_param project.singleFileAddWarning.threshold 0
-OPTRACE "create in-memory project" END { }
-OPTRACE "set parameters" START { }
+  reset_param project.defaultXPMLibraries 
+  open_checkpoint {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.runs/impl_1/Top.dcp}
   set_property webtalk.parent_dir {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.cache/wt} [current_project]
   set_property parent.project_path {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.xpr} [current_project]
   set_property ip_output_repo {{D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.cache/ip}} [current_project]
   set_property ip_cache_permissions {read write} [current_project]
-OPTRACE "set parameters" END { }
-OPTRACE "add files" START { }
-  add_files -quiet {{D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.runs/synth_1/Top.dcp}}
-OPTRACE "read constraints: implementation" START { }
-  read_xdc {{D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/constrs_1/new/constrains.xdc}}
-OPTRACE "read constraints: implementation" END { }
-OPTRACE "add files" END { }
-OPTRACE "link_design" START { }
-  link_design -top Top -part xc7a35tcpg236-1
-OPTRACE "link_design" END { }
-OPTRACE "gray box cells" START { }
-OPTRACE "gray box cells" END { }
 OPTRACE "init_design_reports" START { REPORT }
 OPTRACE "init_design_reports" END { }
 OPTRACE "init_design_write_hwdef" START { }
