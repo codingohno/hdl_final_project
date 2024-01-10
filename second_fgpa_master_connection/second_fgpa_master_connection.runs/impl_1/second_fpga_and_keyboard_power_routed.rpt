@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date             : Wed Jan 10 19:13:46 2024
+| Date             : Thu Jan 11 00:59:01 2024
 | Host             : DESKTOP-NPIMFVD running 64-bit major release  (build 9200)
 | Command          : report_power -file second_fpga_and_keyboard_power_routed.rpt -pb second_fpga_and_keyboard_power_summary_routed.pb -rpx second_fpga_and_keyboard_power_routed.rpx
 | Design           : second_fpga_and_keyboard
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 2.767        |
+| Total On-Chip Power (W)  | 4.065        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 2.688        |
-| Device Static (W)        | 0.079        |
+| Dynamic (W)              | 3.981        |
+| Device Static (W)        | 0.085        |
 | Effective TJA (C/W)      | 5.0          |
-| Max Ambient (C)          | 71.2         |
-| Junction Temperature (C) | 38.8         |
+| Max Ambient (C)          | 64.7         |
+| Junction Temperature (C) | 45.3         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,17 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.379 |     2525 |       --- |             --- |
-|   LUT as Logic |     0.310 |      992 |     20800 |            4.77 |
+| Slice Logic    |     0.386 |     2525 |       --- |             --- |
+|   LUT as Logic |     0.316 |      989 |     20800 |            4.75 |
 |   CARRY4       |     0.032 |       15 |      8150 |            0.18 |
 |   Register     |     0.031 |     1219 |     41600 |            2.93 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
 |   F7/F8 Muxes  |    <0.001 |      202 |     32600 |            0.62 |
 |   Others       |     0.000 |       21 |       --- |             --- |
-| Signals        |     0.504 |     1492 |       --- |             --- |
-| I/O            |     1.805 |       24 |       106 |           22.64 |
-| Static Power   |     0.079 |          |           |                 |
-| Total          |     2.767 |          |           |                 |
+| Signals        |     0.516 |     1495 |       --- |             --- |
+| I/O            |     3.079 |       24 |       106 |           22.64 |
+| Static Power   |     0.085 |          |           |                 |
+| Total          |     4.065 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,9 +72,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.913 |       0.897 |      0.016 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.079 |       0.066 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.508 |       0.507 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.936 |       0.916 |      0.021 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.126 |       0.112 |      0.014 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.869 |       0.868 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -139,16 +139,16 @@ Table of Contents
 +-------------------------------+-----------+
 | Name                          | Power (W) |
 +-------------------------------+-----------+
-| second_fpga_and_keyboard      |     2.688 |
+| second_fpga_and_keyboard      |     3.981 |
 |   db0                         |     0.014 |
-|   key_de                      |     0.798 |
-|     inst                      |     0.792 |
-|       Ps2Interface_i          |     0.772 |
-|   master_connection_interface |     0.203 |
-|     ms_ctrl_0                 |     0.203 |
-|       cnt_0                   |     0.186 |
-|   op0                         |     0.067 |
-|   seven_seg                   |     0.083 |
+|   key_de                      |     0.802 |
+|     inst                      |     0.791 |
+|       Ps2Interface_i          |     0.770 |
+|   master_connection_interface |     0.208 |
+|     ms_ctrl_0                 |     0.208 |
+|       cnt_0                   |     0.169 |
+|   op0                         |     0.064 |
+|   seven_seg                   |     0.098 |
 +-------------------------------+-----------+
 
 

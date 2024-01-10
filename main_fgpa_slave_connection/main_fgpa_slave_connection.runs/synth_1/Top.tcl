@@ -90,6 +90,7 @@ OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/ascii_rom.v}
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/counter.v}
+  {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/motor.v}
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/pixel_gen.v}
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/slave_control.v}
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/top.v}

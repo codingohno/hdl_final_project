@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1704884905">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1704905676">
   <File Type="PA-TCL" Name="second_fpga_and_keyboard.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="second_fpga_and_keyboard_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="second_fpga_and_keyboard_reports.tcl"/>

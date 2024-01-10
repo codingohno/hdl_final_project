@@ -95,7 +95,7 @@ module master_control(clk, rst_n, request, ack, data_in, notice, data, valid, re
             state_wait_to_send_data: begin
                 next_state = (done == 1'b1)? state_send_data: state_wait_to_send_data;
                 next_notice = (done == 1'b1)? 1'b0: 1'b1; //illuminating LED.
-                next_data = (done == 1'b1)? data_in: 5'd0; // time to send data!
+                next_data = data_in; // give more time for fpga to manipulate the data
                 next_request2s = 1'b0;
                 next_start = (done == 1'b1)? 1'b0: 1'b1;
                 next_valid = (done == 1)? 1'b1: 1'b0; //counting done!, time to set our output data as valid

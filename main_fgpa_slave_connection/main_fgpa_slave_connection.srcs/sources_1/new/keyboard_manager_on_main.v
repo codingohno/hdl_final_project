@@ -31,10 +31,15 @@ module Top(
     
     //JERRY 
     //vga
-    output reg [3:0] vgaRed, vgaGreen, vgaBlue,
-    output hsync, vsync
+    output reg [3:0] vgaRed,
+    output reg [3:0] vgaGreen,
+    output reg [3:0] vgaBlue,
+    output hsync, 
+    output vsync,
 
     //motor
+    output pwm_for_motor,//(the enable signal)
+    output[2-1:0] motor_direction
    
 );
 
@@ -332,6 +337,17 @@ module Top(
     player2_lights
   );
 
+  //the motor 
+  motor_puppet motor_for_puppet(
+    .clk(clk),
+    .rst(rst),
+    .pwm_for_motor(pwm_for_motor),
+    .motor_direction(motor_direction),
+    .player1_lights(player1_lights),
+    .player2_lights(player2_lights)
+    //the lights means how many times the motor should have moved
+);
+
   SevenSegment svn_seg(
     display,//the led signal corresponding to AN
     digit,//the AN
@@ -364,6 +380,7 @@ module game_logic_core(
   output[5*6-1:0] flatten_chosen_word,//6 char each char is encoded by 5 bits
   output[6-1:0] player1_lights,
   output[6-1:0] player2_lights
+  
 
 );
   reg [5-1:0] chosen_word[6-1:0];
@@ -714,6 +731,9 @@ module game_logic_core(
                         (player2_dead_score==4'd5)?6'b011111:
                         (player2_dead_score==4'd6)?6'b111111:
                         6'b101010;
+
+
+
 
 endmodule
 
@@ -1072,15 +1092,15 @@ module OnePulse (
     end
 endmodule
 
-module clk_divider(count_for_100_megahz, clk, div_clk,rst_n);
+module clk_divider(count_for_100_megahz, clk, div_clk,rst);
     input[27-1:0] count_for_100_megahz;
     input clk;
-    input rst_n;
+    input rst;
     output reg div_clk;
 
     reg[27-1:0] count=27'b0;
     always@(posedge clk)begin
-        if(rst_n===1'b0)begin
+        if(rst===1'b1)begin
             count<=27'b0;
             div_clk<=1'b0;
         end
