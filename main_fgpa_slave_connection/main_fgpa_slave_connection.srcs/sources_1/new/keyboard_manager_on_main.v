@@ -25,7 +25,15 @@ module Top(
     //----------------some buttons to do the job-----need to debounce and one pulse-----------------
     input game_start,
     input input_done,
-    input restart_game
+    input restart_game,
+    
+    //JERRY 
+    //vga
+    output reg [3:0] vgaRed, vgaGreen, vgaBlue,
+    output hsync, vsync
+
+    //motor
+   
 );
 
   //debounce the reset & generate rst_n
@@ -41,6 +49,12 @@ module Top(
   wire [5-1:0] second_keyboard_data;
   wire new_second_kb_data;
 
+  //JERRY (reordered)
+  //GAME LOGIC CORE
+  wire [4-1:0] num_of_revealed_letters;
+  wire [5-1:0] chosen_word[6-1:0];//6 char each char is encoded by 5 bits
+  /*flattened port*/
+  wire [5*6-1:0] flatten_chosen_word;
 
   keyboard_manager test(
     //general 
@@ -64,7 +78,131 @@ module Top(
     .second_keyboard_data(second_keyboard_data),
     .new_second_kb_data(new_second_kb_data)
   );
+  
+  //JERRY ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // VGA CONTROLLER 
+  // TO DO: LET THE 2ND KEYBOARD ALSO INPUT THE STUFF
+  // TO DO: MAINTAIN THE STATE OF THE LETTER IN THE VGA
+  wire clk_d2;//25MHz
+  wire [9:0] h_cnt, v_cnt;
+  wire valid;
 
+  clk_div #(2) CD0(.clk(clk), .clk_d(clk_d2));
+	
+  //signals
+  wire flag_1, flag_2, flag_3, flag_4, flag_5, flag_6;
+
+  //separate letter signals for each letter (keyboard input) so that VGA won't break!
+  //STILL BREAKS IDK WHY
+  reg [4-1:0] keyboard1, keyboard2, keyboard3, keyboard4, keyboard5, keyboard6;
+  reg keyboard1_l, keyboard2_l, keyboard3_l, keyboard4_l, keyboard5_l, keyboard6_l; //MSB
+
+  //if a correct letter has been inputted already
+  reg correct1, correct2, correct3, correct4, correct5, correct6;
+  wire pc1, pc2, pc3, pc4, pc5, pc6;
+
+  // no condition for now, determine later (if keyboard else letter answer)
+  always@(*)begin 
+      {keyboard1_l, keyboard1} = (first_keyboard_data == (chosen_word[5]) || second_keyboard_data == (chosen_word[5])) ? first_keyboard_data : (correct1) ? chosen_word[5]: 0;
+      {keyboard2_l, keyboard2} = (first_keyboard_data == (chosen_word[4]) || second_keyboard_data == (chosen_word[4])) ? first_keyboard_data : (correct2) ? chosen_word[4]: 0;
+      {keyboard3_l, keyboard3} = (first_keyboard_data == (chosen_word[3]) || second_keyboard_data == (chosen_word[3])) ? first_keyboard_data : (correct3) ? chosen_word[3]: 0;
+      {keyboard4_l, keyboard4} = (first_keyboard_data == (chosen_word[2]) || second_keyboard_data == (chosen_word[2])) ? first_keyboard_data : (correct4) ? chosen_word[2]: 0;
+      {keyboard5_l, keyboard5} = (first_keyboard_data == (chosen_word[1]) || second_keyboard_data == (chosen_word[1])) ? first_keyboard_data : (correct5) ? chosen_word[1]: 0;
+      {keyboard6_l, keyboard6} = (first_keyboard_data == (chosen_word[0]) || second_keyboard_data == (chosen_word[0])) ? first_keyboard_data : (correct6) ? chosen_word[0]: 0;
+
+      //im not sure how to maintain the state
+      correct1 = (first_keyboard_data == (chosen_word[5]) || second_keyboard_data == (chosen_word[5])) ? 1'b1 : correct1;
+      correct2 = (first_keyboard_data == (chosen_word[4]) || second_keyboard_data == (chosen_word[4])) ? 1'b1 : correct2;
+      correct3 = (first_keyboard_data == (chosen_word[3]) || second_keyboard_data == (chosen_word[3])) ? 1'b1 : correct3;
+      correct4 = (first_keyboard_data == (chosen_word[2]) || second_keyboard_data == (chosen_word[2])) ? 1'b1 : correct4;
+      correct5 = (first_keyboard_data == (chosen_word[1]) || second_keyboard_data == (chosen_word[1])) ? 1'b1 : correct5;
+      correct6 = (first_keyboard_data == (chosen_word[0]) || second_keyboard_data == (chosen_word[0])) ? 1'b1 : correct6;
+  end
+
+  always @(*) begin
+    if(!valid)
+        {vgaRed, vgaGreen, vgaBlue} =  12'hF00; // JERRY
+    else
+        {vgaRed, vgaGreen, vgaBlue} = (flag_1||flag_2||flag_3||flag_4||flag_5||flag_6) ? 12'hFFF :  12'h00F;
+    end
+
+    localparam [4:0] row = 15;
+    localparam [6:0] col = 29;
+
+    // LETTER GENERATOR
+    pixel_gen letter1(
+        .h_cnt(h_cnt), 
+        .v_cnt(v_cnt),
+        .valid(valid),
+        .row(row), // need to do this
+        .col(col), // need to tdo this for the hangman display
+        .val({keyboard1_l, keyboard1}),
+        .flag(flag_1)
+    );
+
+    pixel_gen letter2(
+        .h_cnt(h_cnt), 
+        .v_cnt(v_cnt),
+        .valid(valid),
+        .row(row), // need to do this
+        .col(col+1), // need to tdo this for the hangman display
+        .val({keyboard2_l, keyboard2}),
+        .flag(flag_2)
+    );
+
+    pixel_gen letter3(
+        .h_cnt(h_cnt), 
+        .v_cnt(v_cnt),
+        .valid(valid),
+        .row(row), // need to do this
+        .col(col+2), // need to tdo this for the hangman display
+        .val({keyboard3_l, keyboard3}),
+        .flag(flag_3)
+    );
+
+    pixel_gen letter4(
+        .h_cnt(h_cnt), 
+        .v_cnt(v_cnt),
+        .valid(valid),
+        .row(row), // need to do this
+        .col(col+3), // need to tdo this for the hangman display
+        .val({keyboard4_l, keyboard4}),
+        .flag(flag_4)
+    );
+
+    pixel_gen letter5(
+        .h_cnt(h_cnt), 
+        .v_cnt(v_cnt),
+        .valid(valid),
+        .row(row), // need to do this
+        .col(col+4), // need to tdo this for the hangman display
+        .val({keyboard5_l, keyboard5}),
+        .flag(flag_5)
+    );
+
+    //breaks at the 6th letter???? why???
+    pixel_gen letter6(
+        .h_cnt(h_cnt), 
+        .v_cnt(v_cnt),
+        .valid(valid),
+        .row(row), // need to do this
+        .col(col+5), // need to tdo this for the hangman display
+        .val({keyboard6}), // BREAKS IF I USE KEYBOARD6_L ??????
+        .flag(flag_6)
+    );
+
+    vga_controller VC0(
+        .pclk(clk_d2),
+        .reset(rst),
+        .hsync(hsync),
+        .vsync(vsync),
+        .valid(valid),
+        .h_cnt(h_cnt),
+        .v_cnt(v_cnt)
+    );
+
+   //END OF JERRY ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   
   //showing the keyboard manager
   reg [15:0] nums;
   reg[1:0] chosen_set=2'd1;
@@ -86,6 +224,7 @@ module Top(
   end
 
   reg temp;
+  /* ------ for the digit display ------ */
   always @(*)begin
     if(chosen_set==2'd1)begin
       nums[15:4]={
@@ -128,11 +267,7 @@ module Top(
     end
   end
 
-  //GAME LOGIC CORE
-  wire [4-1:0] num_of_revealed_letters;
-  wire [5-1:0] chosen_word[6-1:0];//6 char each char is encoded by 5 bits
-  /*flattened port*/
-  wire [5*6-1:0] flatten_chosen_word;
+
   /*---regroup the wires---*/
   assign chosen_word[5]=flatten_chosen_word[29:25];
   assign chosen_word[4]=flatten_chosen_word[24:20];
@@ -184,7 +319,7 @@ module game_logic_core(
 
   //---two keyboards
   input [5-1:0] first_keyboard_data,
-  input new_first_kb_data,
+  input new_first_kb_data, // JERRY : what does this do? huhhuuhhuhu
   input [5-1:0] second_keyboard_data,
   input new_second_kb_data,
 
@@ -266,6 +401,16 @@ module game_logic_core(
     chosen_word[3]<=next_chosen_word[3];
     chosen_word[4]<=next_chosen_word[4];
     chosen_word[5]<=next_chosen_word[5];
+  end
+
+  //JERRY 
+  always@(*)begin 
+    next_chosen_word[5] = 1;
+    next_chosen_word[4] = 16;
+    next_chosen_word[3] = 16;
+    next_chosen_word[2] = 12;
+    next_chosen_word[1] = 5;
+    next_chosen_word[0] = 5;
   end
 
   //----------------------------------------------------determine all the next states-----------------------------------------------//
@@ -1631,9 +1776,91 @@ module KeyboardDecoder(
     end
 endmodule
 
+//JERRY
+// DO NOT MODIFY THE FOLLOWING MODULE
+module vga_controller(pclk, reset, hsync, vsync, valid, h_cnt, v_cnt);
+    input pclk, reset;
+    output hsync, vsync;
+	output valid;
+    output [9:0]h_cnt, v_cnt;
+    
+    reg [9:0]pixel_cnt;
+    reg [9:0]line_cnt;
+    reg hsync_i,vsync_i;
+	wire hsync_default, vsync_default;
+    wire [9:0] HD, HF, HS, HB, HT, VD, VF, VS, VB, VT;
+	
+	//WHAT ARE THESE????
+    assign HD = 640;
+    assign HF = 16;
+    assign HS = 96;
+    assign HB = 48;
+    assign HT = 800; 
+    assign VD = 480;
+    assign VF = 10;
+    assign VS = 2;
+    assign VB = 33;
+    assign VT = 525;
+    assign hsync_default = 1'b1;
+    assign vsync_default = 1'b1;
+     
+    always@(posedge pclk)
+        if(reset)
+            pixel_cnt <= 0;
+        else if(pixel_cnt < (HT - 1))
+			pixel_cnt <= pixel_cnt + 1;
+		else
+			pixel_cnt <= 0;
 
+    always@(posedge pclk)
+        if(reset)
+            hsync_i <= hsync_default;
+        else if((pixel_cnt >= (HD + HF - 1))&&(pixel_cnt < (HD + HF + HS - 1)))
+			hsync_i <= ~hsync_default;
+		else
+			hsync_i <= hsync_default; 
+    
+    always@(posedge pclk)
+        if(reset)
+            line_cnt <= 0;
+        else if(pixel_cnt == (HT -1))
+			if(line_cnt < (VT - 1))
+				line_cnt <= line_cnt + 1;
+			else
+				line_cnt <= 0;
+                  
+				  
+    always@(posedge pclk)
+        if(reset)
+            vsync_i <= vsync_default; 
+        else if((line_cnt >= (VD + VF - 1))&&(line_cnt < (VD + VF + VS - 1)))
+            vsync_i <= ~vsync_default;
+        else
+            vsync_i <= vsync_default; 
 
+    assign hsync = hsync_i;
+    assign vsync = vsync_i;
+    assign valid = ((pixel_cnt < HD) && (line_cnt < VD));
+	
+    assign h_cnt = (pixel_cnt < HD)? pixel_cnt : 10'd0;//639
+    assign v_cnt = (line_cnt < VD)? line_cnt : 10'd0;//479
+	
+endmodule
 
+//JERRY
+module clk_div #(parameter n = 2)(clk, clk_d);
+	input clk;
+	output clk_d;
+	reg [n-1:0]count;
+	wire[n-1:0]next_count;
+	
+	always@(posedge clk)begin
+		count <= next_count;
+	end
+	
+	assign next_count = count + 1;
+	assign clk_d = count[n-1];
+endmodule
 
 
 
