@@ -103,20 +103,34 @@ module Top(
 
   // no condition for now, determine later (if keyboard else letter answer)
   always@(*)begin 
-      {keyboard1_l, keyboard1} = (first_keyboard_data == (chosen_word[5]) || second_keyboard_data == (chosen_word[5])) ? first_keyboard_data : (correct1) ? chosen_word[5]: 0;
-      {keyboard2_l, keyboard2} = (first_keyboard_data == (chosen_word[4]) || second_keyboard_data == (chosen_word[4])) ? first_keyboard_data : (correct2) ? chosen_word[4]: 0;
-      {keyboard3_l, keyboard3} = (first_keyboard_data == (chosen_word[3]) || second_keyboard_data == (chosen_word[3])) ? first_keyboard_data : (correct3) ? chosen_word[3]: 0;
-      {keyboard4_l, keyboard4} = (first_keyboard_data == (chosen_word[2]) || second_keyboard_data == (chosen_word[2])) ? first_keyboard_data : (correct4) ? chosen_word[2]: 0;
-      {keyboard5_l, keyboard5} = (first_keyboard_data == (chosen_word[1]) || second_keyboard_data == (chosen_word[1])) ? first_keyboard_data : (correct5) ? chosen_word[1]: 0;
-      {keyboard6_l, keyboard6} = (first_keyboard_data == (chosen_word[0]) || second_keyboard_data == (chosen_word[0])) ? first_keyboard_data : (correct6) ? chosen_word[0]: 0;
-
-      //im not sure how to maintain the state
-      correct1 = (first_keyboard_data == (chosen_word[5]) || second_keyboard_data == (chosen_word[5])) ? 1'b1 : correct1;
-      correct2 = (first_keyboard_data == (chosen_word[4]) || second_keyboard_data == (chosen_word[4])) ? 1'b1 : correct2;
-      correct3 = (first_keyboard_data == (chosen_word[3]) || second_keyboard_data == (chosen_word[3])) ? 1'b1 : correct3;
-      correct4 = (first_keyboard_data == (chosen_word[2]) || second_keyboard_data == (chosen_word[2])) ? 1'b1 : correct4;
-      correct5 = (first_keyboard_data == (chosen_word[1]) || second_keyboard_data == (chosen_word[1])) ? 1'b1 : correct5;
-      correct6 = (first_keyboard_data == (chosen_word[0]) || second_keyboard_data == (chosen_word[0])) ? 1'b1 : correct6;
+      if(num_of_revealed_letters == 0)begin 
+        {keyboard1_l, keyboard1} = 0;
+        {keyboard2_l, keyboard2} = 0;
+        {keyboard3_l, keyboard3} = 0;
+        {keyboard4_l, keyboard4} = 0;
+        {keyboard5_l, keyboard5} = 0;
+        {keyboard6_l, keyboard6} = 0;
+      end 
+      else begin
+        if(num_of_revealed_letters >= 1)begin 
+            {keyboard1_l, keyboard1} = chosen_word[5];
+        end
+        if(num_of_revealed_letters >= 2)begin 
+            {keyboard2_l, keyboard2} = chosen_word[4];
+        end
+        if(num_of_revealed_letters >= 3)begin 
+            {keyboard3_l, keyboard3} = chosen_word[3];
+        end
+        if(num_of_revealed_letters >= 4)begin 
+            {keyboard4_l, keyboard4} = chosen_word[2];
+        end
+        if(num_of_revealed_letters >= 5)begin 
+            {keyboard5_l, keyboard5} = chosen_word[1];
+        end
+        if(num_of_revealed_letters >= 6)begin 
+            {keyboard6_l, keyboard6} = chosen_word[0];
+        end
+      end
   end
 
   always @(*) begin
@@ -136,7 +150,7 @@ module Top(
         .valid(valid),
         .row(row), // need to do this
         .col(col), // need to tdo this for the hangman display
-        .val({keyboard1_l, keyboard1}),
+        .val({keyboard1_l, keyboard1}), 
         .flag(flag_1)
     );
 
@@ -401,16 +415,6 @@ module game_logic_core(
     chosen_word[3]<=next_chosen_word[3];
     chosen_word[4]<=next_chosen_word[4];
     chosen_word[5]<=next_chosen_word[5];
-  end
-
-  //JERRY 
-  always@(*)begin 
-    next_chosen_word[5] = 1;
-    next_chosen_word[4] = 16;
-    next_chosen_word[3] = 16;
-    next_chosen_word[2] = 12;
-    next_chosen_word[1] = 5;
-    next_chosen_word[0] = 5;
   end
 
   //----------------------------------------------------determine all the next states-----------------------------------------------//
