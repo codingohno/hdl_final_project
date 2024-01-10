@@ -135,9 +135,11 @@ OPTRACE "set parameters" START { }
   set_property parent.project_path {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.xpr} [current_project]
   set_property ip_output_repo {{D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.cache/ip}} [current_project]
   set_property ip_cache_permissions {read write} [current_project]
+  set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet {{D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.runs/synth_1/Top.dcp}}
+  read_ip -quiet {{d:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci}}
 OPTRACE "read constraints: implementation" START { }
   read_xdc {{D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/constrs_1/new/constrains.xdc}}
 OPTRACE "read constraints: implementation" END { }
@@ -304,6 +306,7 @@ set rc [catch {
   create_msg_db write_bitstream.pb
 OPTRACE "read constraints: write_bitstream" START { }
 OPTRACE "read constraints: write_bitstream" END { }
+  set_property XPM_LIBRARIES XPM_MEMORY [current_project]
   catch { write_mem_info -force -no_partial_mmi Top.mmi }
 OPTRACE "write_bitstream setup" END { }
 OPTRACE "write_bitstream" START { }

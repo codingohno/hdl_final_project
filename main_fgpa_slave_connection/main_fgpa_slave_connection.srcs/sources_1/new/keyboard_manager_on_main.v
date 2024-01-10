@@ -178,8 +178,8 @@ module Top(
           {vgaRed, vgaGreen, vgaBlue} = pixel;
     end
 
-      localparam [4:0] row = 15;
-      localparam [6:0] col = 29;
+      localparam [4:0] row = 17;
+      localparam [6:0] col = 32;
 
       // LETTER GENERATOR
       pixel_gen letter1(
@@ -197,7 +197,7 @@ module Top(
           .v_cnt(v_cnt),
           .valid(valid),
           .row(row), // need to do this
-          .col(col+1), // need to tdo this for the hangman display
+          .col(col+3), // need to tdo this for the hangman display
           .val({keyboard2_l, keyboard2}),
           .flag(flag_2)
       );
@@ -207,7 +207,7 @@ module Top(
           .v_cnt(v_cnt),
           .valid(valid),
           .row(row), // need to do this
-          .col(col+2), // need to tdo this for the hangman display
+          .col(col+6), // need to tdo this for the hangman display
           .val({keyboard3_l, keyboard3}),
           .flag(flag_3)
       );
@@ -217,7 +217,7 @@ module Top(
           .v_cnt(v_cnt),
           .valid(valid),
           .row(row), // need to do this
-          .col(col+3), // need to tdo this for the hangman display
+          .col(col+9), // need to tdo this for the hangman display
           .val({keyboard4_l, keyboard4}),
           .flag(flag_4)
       );
@@ -227,7 +227,7 @@ module Top(
           .v_cnt(v_cnt),
           .valid(valid),
           .row(row), // need to do this
-          .col(col+4), // need to tdo this for the hangman display
+          .col(col+12), // need to tdo this for the hangman display
           .val({keyboard5_l, keyboard5}),
           .flag(flag_5)
       );
@@ -238,7 +238,7 @@ module Top(
           .v_cnt(v_cnt),
           .valid(valid),
           .row(row), // need to do this
-          .col(col+5), // need to tdo this for the hangman display
+          .col(col+15), // need to tdo this for the hangman display
           .val({keyboard6}), // BREAKS IF I USE KEYBOARD6_L ??????
           .flag(flag_6)
       );

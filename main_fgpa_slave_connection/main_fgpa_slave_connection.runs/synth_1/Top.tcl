@@ -79,14 +79,17 @@ create_project -in_memory -part xc7a35tcpg236-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
+set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.cache/wt} [current_project]
 set_property parent.project_path {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.xpr} [current_project]
+set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property ip_output_repo {d:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
+add_files {{d:/hdl/final proj/out.coe}}
 read_verilog -library xil_defaultlib {
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/ascii_rom.v}
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/counter.v}
@@ -96,6 +99,9 @@ read_verilog -library xil_defaultlib {
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/top.v}
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v}
 }
+read_ip -quiet {{d:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci}}
+set_property used_in_implementation false [get_files -all {{d:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc}}]
+
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -108,6 +114,8 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc {{D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/constrs_1/new/constrains.xdc}}
 set_property used_in_implementation false [get_files {{D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/constrs_1/new/constrains.xdc}}]
 
+read_xdc dont_touch.xdc
+set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
