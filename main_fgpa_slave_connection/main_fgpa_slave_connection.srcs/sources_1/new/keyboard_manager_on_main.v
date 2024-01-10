@@ -23,9 +23,9 @@ module Top(
 
     //the game control
     //----------------some buttons to do the job-----need to debounce and one pulse-----------------
-    input game_start,
-    input input_done,
-    input restart_game,
+    input unde_game_start,
+    input unde_input_done,
+    input unde_restart_game,
     
     //JERRY 
     //vga
@@ -36,12 +36,26 @@ module Top(
    
 );
 
-  //debounce the reset & generate rst_n
-  wire unone_rst,rst;
-  debounce db0(unone_rst,unde_rst,clk);
-  OnePulse op0(rst,unone_rst,clk);
-  wire rst_n;
-  assign rst_n=~rst;
+  //debounce the reset & generate rst_n & debounce the buttons
+    wire unone_rst,rst;
+    debounce db0(unone_rst,unde_rst,clk);
+    OnePulse op0(rst,unone_rst,clk);
+    
+    wire rst_n;
+    assign rst_n=~rst;
+
+    wire unone_game_start, unone_input_done, unone_restart_game;
+    wire game_start,input_done,restart_game;
+    debounce db1(unone_game_start,unde_game_start,clk);
+    OnePulse op1(game_start,unone_game_start,clk);
+
+    debounce db2(unone_input_done,unde_input_done,clk);
+    OnePulse op2(input_done,unone_input_done,clk);
+
+    debounce db3(unone_restart_game,unde_restart_game,clk);
+    OnePulse op3(restart_game,unone_restart_game,clk);
+
+  
 
   //the data that should be shown
   wire [5-1:0] first_keyboard_data;
@@ -83,137 +97,137 @@ module Top(
   // VGA CONTROLLER 
   // TO DO: LET THE 2ND KEYBOARD ALSO INPUT THE STUFF
   // TO DO: MAINTAIN THE STATE OF THE LETTER IN THE VGA
-  wire clk_d2;//25MHz
-  wire [9:0] h_cnt, v_cnt;
-  wire valid;
+    wire clk_d2;//25MHz
+    wire [9:0] h_cnt, v_cnt;
+    wire valid;
 
-  clk_div #(2) CD0(.clk(clk), .clk_d(clk_d2));
-	
-  //signals
-  wire flag_1, flag_2, flag_3, flag_4, flag_5, flag_6;
+    clk_div #(2) CD0(.clk(clk), .clk_d(clk_d2));
+    
+    //signals
+    wire flag_1, flag_2, flag_3, flag_4, flag_5, flag_6;
 
-  //separate letter signals for each letter (keyboard input) so that VGA won't break!
-  //STILL BREAKS IDK WHY
-  reg [4-1:0] keyboard1, keyboard2, keyboard3, keyboard4, keyboard5, keyboard6;
-  reg keyboard1_l, keyboard2_l, keyboard3_l, keyboard4_l, keyboard5_l, keyboard6_l; //MSB
+    //separate letter signals for each letter (keyboard input) so that VGA won't break!
+    //STILL BREAKS IDK WHY
+    reg [4-1:0] keyboard1, keyboard2, keyboard3, keyboard4, keyboard5, keyboard6;
+    reg keyboard1_l, keyboard2_l, keyboard3_l, keyboard4_l, keyboard5_l, keyboard6_l; //MSB
 
-  //if a correct letter has been inputted already
-  reg correct1, correct2, correct3, correct4, correct5, correct6;
-  wire pc1, pc2, pc3, pc4, pc5, pc6;
+    //if a correct letter has been inputted already
+    reg correct1, correct2, correct3, correct4, correct5, correct6;
+    wire pc1, pc2, pc3, pc4, pc5, pc6;
 
-  // no condition for now, determine later (if keyboard else letter answer)
-  always@(*)begin 
-      if(num_of_revealed_letters == 0)begin 
-        {keyboard1_l, keyboard1} = 0;
-        {keyboard2_l, keyboard2} = 0;
-        {keyboard3_l, keyboard3} = 0;
-        {keyboard4_l, keyboard4} = 0;
-        {keyboard5_l, keyboard5} = 0;
-        {keyboard6_l, keyboard6} = 0;
-      end 
-      else begin
-        if(num_of_revealed_letters >= 1)begin 
-            {keyboard1_l, keyboard1} = chosen_word[5];
+    // no condition for now, determine later (if keyboard else letter answer)
+    always@(*)begin 
+        if(num_of_revealed_letters == 0)begin 
+          {keyboard1_l, keyboard1} = 0;
+          {keyboard2_l, keyboard2} = 0;
+          {keyboard3_l, keyboard3} = 0;
+          {keyboard4_l, keyboard4} = 0;
+          {keyboard5_l, keyboard5} = 0;
+          {keyboard6_l, keyboard6} = 0;
+        end 
+        else begin
+          if(num_of_revealed_letters >= 1)begin 
+              {keyboard1_l, keyboard1} = chosen_word[0];
+          end
+          if(num_of_revealed_letters >= 2)begin 
+              {keyboard2_l, keyboard2} = chosen_word[1];
+          end
+          if(num_of_revealed_letters >= 3)begin 
+              {keyboard3_l, keyboard3} = chosen_word[2];
+          end
+          if(num_of_revealed_letters >= 4)begin 
+              {keyboard4_l, keyboard4} = chosen_word[3];
+          end
+          if(num_of_revealed_letters >= 5)begin 
+              {keyboard5_l, keyboard5} = chosen_word[4];
+          end
+          if(num_of_revealed_letters >= 6)begin 
+              {keyboard6_l, keyboard6} = chosen_word[5];
+          end
         end
-        if(num_of_revealed_letters >= 2)begin 
-            {keyboard2_l, keyboard2} = chosen_word[4];
-        end
-        if(num_of_revealed_letters >= 3)begin 
-            {keyboard3_l, keyboard3} = chosen_word[3];
-        end
-        if(num_of_revealed_letters >= 4)begin 
-            {keyboard4_l, keyboard4} = chosen_word[2];
-        end
-        if(num_of_revealed_letters >= 5)begin 
-            {keyboard5_l, keyboard5} = chosen_word[1];
-        end
-        if(num_of_revealed_letters >= 6)begin 
-            {keyboard6_l, keyboard6} = chosen_word[0];
-        end
-      end
-  end
-
-  always @(*) begin
-    if(!valid)
-        {vgaRed, vgaGreen, vgaBlue} =  12'hF00; // JERRY
-    else
-        {vgaRed, vgaGreen, vgaBlue} = (flag_1||flag_2||flag_3||flag_4||flag_5||flag_6) ? 12'hFFF :  12'h00F;
     end
 
-    localparam [4:0] row = 15;
-    localparam [6:0] col = 29;
+    always @(*) begin
+      if(!valid)
+          {vgaRed, vgaGreen, vgaBlue} =  12'hF00; // JERRY//red
+      else
+          {vgaRed, vgaGreen, vgaBlue} = (flag_1||flag_2||flag_3||flag_4||flag_5||flag_6) ? 12'hFFF :  12'h00F;
+    end
 
-    // LETTER GENERATOR
-    pixel_gen letter1(
-        .h_cnt(h_cnt), 
-        .v_cnt(v_cnt),
-        .valid(valid),
-        .row(row), // need to do this
-        .col(col), // need to tdo this for the hangman display
-        .val({keyboard1_l, keyboard1}), 
-        .flag(flag_1)
-    );
+      localparam [4:0] row = 15;
+      localparam [6:0] col = 29;
 
-    pixel_gen letter2(
-        .h_cnt(h_cnt), 
-        .v_cnt(v_cnt),
-        .valid(valid),
-        .row(row), // need to do this
-        .col(col+1), // need to tdo this for the hangman display
-        .val({keyboard2_l, keyboard2}),
-        .flag(flag_2)
-    );
+      // LETTER GENERATOR
+      pixel_gen letter1(
+          .h_cnt(h_cnt), 
+          .v_cnt(v_cnt),
+          .valid(valid),
+          .row(row), // need to do this
+          .col(col), // need to tdo this for the hangman display
+          .val({keyboard1_l, keyboard1}), 
+          .flag(flag_1)
+      );
 
-    pixel_gen letter3(
-        .h_cnt(h_cnt), 
-        .v_cnt(v_cnt),
-        .valid(valid),
-        .row(row), // need to do this
-        .col(col+2), // need to tdo this for the hangman display
-        .val({keyboard3_l, keyboard3}),
-        .flag(flag_3)
-    );
+      pixel_gen letter2(
+          .h_cnt(h_cnt), 
+          .v_cnt(v_cnt),
+          .valid(valid),
+          .row(row), // need to do this
+          .col(col+1), // need to tdo this for the hangman display
+          .val({keyboard2_l, keyboard2}),
+          .flag(flag_2)
+      );
 
-    pixel_gen letter4(
-        .h_cnt(h_cnt), 
-        .v_cnt(v_cnt),
-        .valid(valid),
-        .row(row), // need to do this
-        .col(col+3), // need to tdo this for the hangman display
-        .val({keyboard4_l, keyboard4}),
-        .flag(flag_4)
-    );
+      pixel_gen letter3(
+          .h_cnt(h_cnt), 
+          .v_cnt(v_cnt),
+          .valid(valid),
+          .row(row), // need to do this
+          .col(col+2), // need to tdo this for the hangman display
+          .val({keyboard3_l, keyboard3}),
+          .flag(flag_3)
+      );
 
-    pixel_gen letter5(
-        .h_cnt(h_cnt), 
-        .v_cnt(v_cnt),
-        .valid(valid),
-        .row(row), // need to do this
-        .col(col+4), // need to tdo this for the hangman display
-        .val({keyboard5_l, keyboard5}),
-        .flag(flag_5)
-    );
+      pixel_gen letter4(
+          .h_cnt(h_cnt), 
+          .v_cnt(v_cnt),
+          .valid(valid),
+          .row(row), // need to do this
+          .col(col+3), // need to tdo this for the hangman display
+          .val({keyboard4_l, keyboard4}),
+          .flag(flag_4)
+      );
 
-    //breaks at the 6th letter???? why???
-    pixel_gen letter6(
-        .h_cnt(h_cnt), 
-        .v_cnt(v_cnt),
-        .valid(valid),
-        .row(row), // need to do this
-        .col(col+5), // need to tdo this for the hangman display
-        .val({keyboard6}), // BREAKS IF I USE KEYBOARD6_L ??????
-        .flag(flag_6)
-    );
+      pixel_gen letter5(
+          .h_cnt(h_cnt), 
+          .v_cnt(v_cnt),
+          .valid(valid),
+          .row(row), // need to do this
+          .col(col+4), // need to tdo this for the hangman display
+          .val({keyboard5_l, keyboard5}),
+          .flag(flag_5)
+      );
 
-    vga_controller VC0(
-        .pclk(clk_d2),
-        .reset(rst),
-        .hsync(hsync),
-        .vsync(vsync),
-        .valid(valid),
-        .h_cnt(h_cnt),
-        .v_cnt(v_cnt)
-    );
+      //breaks at the 6th letter???? why???
+      pixel_gen letter6(
+          .h_cnt(h_cnt), 
+          .v_cnt(v_cnt),
+          .valid(valid),
+          .row(row), // need to do this
+          .col(col+5), // need to tdo this for the hangman display
+          .val({keyboard6}), // BREAKS IF I USE KEYBOARD6_L ??????
+          .flag(flag_6)
+      );
+
+      vga_controller VC0(
+          .pclk(clk_d2),
+          .reset(rst),
+          .hsync(hsync),
+          .vsync(vsync),
+          .valid(valid),
+          .h_cnt(h_cnt),
+          .v_cnt(v_cnt)
+      );
 
    //END OF JERRY ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
@@ -242,7 +256,7 @@ module Top(
   always @(*)begin
     if(chosen_set==2'd1)begin
       nums[15:4]={
-                    4'd0,
+                    num_of_revealed_letters,
 
                     4'd0,
                     
@@ -260,7 +274,7 @@ module Top(
     end
     else if(chosen_set==2'd2) begin
       nums[15:4]={
-                    4'd0,
+                    num_of_revealed_letters,
 
                     4'd0,
                     
@@ -519,17 +533,20 @@ module game_logic_core(
     if(rst_n==1'b0)begin
         next_player1_dead_score=4'd0;
         next_player2_dead_score=4'd0;
+        next_num_of_revealed_letters=4'd0;
     end
     else begin
       case(state)
         STATE_IDLE:begin
           next_player1_dead_score=player1_dead_score;
           next_player2_dead_score=player2_dead_score;
+          next_num_of_revealed_letters=4'd0;
         end
 
         STATE_INPUT:begin
           next_player1_dead_score=player1_dead_score;
           next_player2_dead_score=player2_dead_score;
+          next_num_of_revealed_letters=4'd0;
         end
 
         STATE_FIRST_PLAYER:begin

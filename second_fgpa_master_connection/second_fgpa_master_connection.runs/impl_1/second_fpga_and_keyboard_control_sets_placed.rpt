@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Sun Jan  7 23:40:06 2024
+| Date         : Wed Jan 10 19:12:45 2024
 | Host         : DESKTOP-NPIMFVD running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file second_fpga_and_keyboard_control_sets_placed.rpt
 | Design       : second_fpga_and_keyboard
@@ -59,10 +59,10 @@ Table of Contents
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | No           | No                    | No                     |              14 |            5 |
-| No           | No                    | Yes                    |              78 |           24 |
-| No           | Yes                   | No                     |              35 |           10 |
+| No           | No                    | Yes                    |              78 |           28 |
+| No           | Yes                   | No                     |              35 |            9 |
 | Yes          | No                    | No                     |             512 |          137 |
-| Yes          | No                    | Yes                    |             575 |          165 |
+| Yes          | No                    | Yes                    |             575 |          175 |
 | Yes          | Yes                   | No                     |               5 |            3 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -78,16 +78,16 @@ Table of Contents
 |  clk_IBUF_BUFG | key_de/inst/lock_status0                     | op0/rst                       |                1 |              2 |         2.00 |
 |  clk_IBUF_BUFG | key_de/inst/Ps2Interface_i/bits_count        | op0/rst                       |                2 |              4 |         2.00 |
 |  clk_IBUF_BUFG | key_de/E[0]                                  | op0/rst                       |                3 |              5 |         1.67 |
-|  clk_IBUF_BUFG | seven_seg/FSM_sequential_digit[2]_i_1_n_0    | op0/rst                       |                3 |              7 |         2.33 |
+|  clk_IBUF_BUFG | seven_seg/FSM_sequential_digit[2]_i_1_n_0    | op0/rst                       |                5 |              7 |         1.40 |
 |  clk_IBUF_BUFG | key_de/inst/Ps2Interface_i/rx_finish         | op0/rst                       |                2 |              8 |         4.00 |
 |  clk_IBUF_BUFG | key_de/inst/Ps2Interface_i/rx_valid          | op0/rst                       |                2 |              8 |         4.00 |
 |  clk_IBUF_BUFG | key_de/inst/Ps2Interface_i/frame[10]_i_1_n_0 | op0/rst                       |                3 |             11 |         3.67 |
 |  clk_IBUF_BUFG |                                              |                               |                5 |             14 |         2.80 |
-|  clk_IBUF_BUFG | key_de/inst/next_key                         | op0/rst                       |                5 |             21 |         4.20 |
-|  clk_IBUF_BUFG |                                              | op0/signal_single_pulse_reg_0 |                7 |             27 |         3.86 |
-|  clk_IBUF_BUFG |                                              | op0/rst                       |               27 |             86 |         3.19 |
+|  clk_IBUF_BUFG | key_de/inst/next_key                         | op0/rst                       |                7 |             21 |         3.00 |
+|  clk_IBUF_BUFG |                                              | op0/signal_single_pulse_reg_0 |                6 |             27 |         4.50 |
+|  clk_IBUF_BUFG |                                              | op0/rst                       |               31 |             86 |         2.77 |
 |  clk_IBUF_BUFG | new_press_detector/op0/E[0]                  |                               |              137 |            512 |         3.74 |
-|  clk_IBUF_BUFG | key_de/op/E[0]                               | op0/rst                       |              145 |            512 |         3.53 |
+|  clk_IBUF_BUFG | key_de/op/E[0]                               | op0/rst                       |              151 |            512 |         3.39 |
 +----------------+----------------------------------------------+-------------------------------+------------------+----------------+--------------+
 
 

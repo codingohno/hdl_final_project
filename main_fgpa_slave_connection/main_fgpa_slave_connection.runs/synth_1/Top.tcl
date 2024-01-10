@@ -72,6 +72,7 @@ proc create_report { reportName command } {
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 2
 set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -87,9 +88,12 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
+  {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/ascii_rom.v}
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/counter.v}
+  {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/pixel_gen.v}
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/slave_control.v}
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/top.v}
+  {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/vga_top.v}
   {D:/hdl/final proj/main_fgpa_slave_connection/main_fgpa_slave_connection.srcs/sources_1/new/keyboard_manager_on_main.v}
 }
 OPTRACE "Adding files" END { }

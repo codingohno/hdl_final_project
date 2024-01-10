@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Sun Jan  7 23:41:14 2024
+| Date         : Wed Jan 10 21:07:46 2024
 | Host         : DESKTOP-NPIMFVD running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -file Top_timing_summary_routed.rpt -pb Top_timing_summary_routed.pb -rpx Top_timing_summary_routed.rpx -warn_on_violation
 | Design       : Top
@@ -39,12 +39,12 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (1225)
+1. checking no_clock (1303)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (3027)
-5. checking no_input_delay (10)
-6. checking no_output_delay (15)
+4. checking unconstrained_internal_endpoints (3150)
+5. checking no_input_delay (13)
+6. checking no_output_delay (29)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
 9. checking loops (0)
@@ -52,9 +52,19 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (1225)
+1. checking no_clock (1303)
 ---------------------------
- There are 1225 register/latch pins with no clock driven by root clock pin: clk (HIGH)
+ There are 1261 register/latch pins with no clock driven by root clock pin: clk (HIGH)
+
+ There are 22 register/latch pins with no clock driven by root clock pin: CD0/count_reg[1]/Q (HIGH)
+
+ There are 3 register/latch pins with no clock driven by root clock pin: HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[0]/Q (HIGH)
+
+ There are 5 register/latch pins with no clock driven by root clock pin: HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[1]/Q (HIGH)
+
+ There are 6 register/latch pins with no clock driven by root clock pin: HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[2]/Q (HIGH)
+
+ There are 6 register/latch pins with no clock driven by root clock pin: HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[3]/Q (HIGH)
 
 
 2. checking constant_clock (0)
@@ -67,23 +77,23 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (3027)
+4. checking unconstrained_internal_endpoints (3150)
 ---------------------------------------------------
- There are 3027 pins that are not constrained for maximum delay. (HIGH)
+ There are 3150 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (10)
+5. checking no_input_delay (13)
 -------------------------------
- There are 10 input ports with no input delay specified. (HIGH)
+ There are 13 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
-6. checking no_output_delay (15)
+6. checking no_output_delay (29)
 --------------------------------
- There are 15 ports with no output delay specified. (HIGH)
+ There are 29 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 

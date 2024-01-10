@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Sun Jan  7 23:40:06 2024
+| Date         : Wed Jan 10 21:06:54 2024
 | Host         : DESKTOP-NPIMFVD running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Top_control_sets_placed.rpt
 | Design       : Top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    17 |
-|    Minimum number of control sets                        |    17 |
+| Total control sets                                       |    27 |
+|    Minimum number of control sets                        |    27 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    47 |
+| Unused register locations in slices containing registers |   119 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    17 |
-| >= 0 to < 4        |     3 |
-| >= 4 to < 6        |     3 |
+| Total control sets |    27 |
+| >= 0 to < 4        |    10 |
+| >= 4 to < 6        |     4 |
 | >= 6 to < 8        |     2 |
 | >= 8 to < 10       |     2 |
-| >= 10 to < 12      |     1 |
+| >= 10 to < 12      |     3 |
 | >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     1 |
-| >= 16              |     5 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     6 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,38 +58,48 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              15 |            5 |
+| No           | No                    | No                     |              34 |           11 |
 | No           | No                    | Yes                    |              78 |           26 |
-| No           | Yes                   | No                     |              27 |            7 |
+| No           | Yes                   | No                     |              58 |           24 |
 | Yes          | No                    | No                     |             512 |          138 |
-| Yes          | No                    | Yes                    |             577 |          168 |
-| Yes          | Yes                   | No                     |              16 |            6 |
+| Yes          | No                    | Yes                    |             577 |          164 |
+| Yes          | Yes                   | No                     |              30 |           11 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+-----------------------------------------------------------+-------------------------------+------------------+----------------+--------------+
-|  Clock Signal  |                       Enable Signal                       |        Set/Reset Signal       | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------+-----------------------------------------------------------+-------------------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG | test/kb_main/key_de/inst/Ps2Interface_i/ps2_clk_s1        | op0/rst                       |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG | test/kb_main/key_de/inst/Ps2Interface_i/ps2_data_s1       | op0/rst                       |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG | test/kb_main/key_de/inst/lock_status0                     | op0/rst                       |                1 |              2 |         2.00 |
-|  clk_IBUF_BUFG | test/kb_main/key_de/inst/Ps2Interface_i/bits_count        | op0/rst                       |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | test/kb_main/key_de/E[0]                                  | op0/rst                       |                3 |              5 |         1.67 |
-|  clk_IBUF_BUFG | test/slave_receiver/sl_ctrl_0/next_data                   | op0/rst                       |                1 |              5 |         5.00 |
-|  clk_IBUF_BUFG | test/slave_receiver/sl_ctrl_0/next_state                  | op0/rst                       |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG | svn_seg/FSM_sequential_digit[2]_i_1_n_0                   | op0/rst                       |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG | test/kb_main/key_de/inst/Ps2Interface_i/rx_finish         | op0/rst                       |                1 |              8 |         8.00 |
-|  clk_IBUF_BUFG | test/kb_main/key_de/inst/Ps2Interface_i/rx_valid          | op0/rst                       |                1 |              8 |         8.00 |
-|  clk_IBUF_BUFG | test/kb_main/key_de/inst/Ps2Interface_i/frame[10]_i_1_n_0 | op0/rst                       |                2 |             11 |         5.50 |
-|  clk_IBUF_BUFG |                                                           |                               |                5 |             15 |         3.00 |
-|  clk_IBUF_BUFG | test/kb_main/key_de/inst/next_key                         | op0/rst                       |                7 |             23 |         3.29 |
-|  clk_IBUF_BUFG |                                                           | op0/signal_single_pulse_reg_0 |                7 |             27 |         3.86 |
-|  clk_IBUF_BUFG |                                                           | op0/rst                       |               26 |             78 |         3.00 |
-|  clk_IBUF_BUFG | test/kb_main/new_press_detector/op0/E[0]                  |                               |              138 |            512 |         3.71 |
-|  clk_IBUF_BUFG | test/kb_main/key_de/op/E[0]                               | op0/rst                       |              151 |            512 |         3.39 |
-+----------------+-----------------------------------------------------------+-------------------------------+------------------+----------------+--------------+
++------------------------------------------------------+-----------------------------------------------------------+---------------------------------+------------------+----------------+--------------+
+|                     Clock Signal                     |                       Enable Signal                       |         Set/Reset Signal        | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------------------------------------------+-----------------------------------------------------------+---------------------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/ps2_clk_s1        | op0/rst                         |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/ps2_data_s1       | op0/rst                         |                1 |              1 |         1.00 |
+|  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[3]_2 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
+|  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[1]_2 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
+|  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[1]_0 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
+|  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[1]_1 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
+|  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[3]_1 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
+|  HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[0]_0 |                                                           | HANGMAN_GAME_LOGIC/keyboard6__0 |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/lock_status0                     | op0/rst                         |                1 |              2 |         2.00 |
+|  CD0/Q[0]                                            |                                                           | op0/rst                         |                2 |              2 |         1.00 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/bits_count        | op0/rst                         |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG                                       | HANGMAN_GAME_LOGIC/num_of_revealed_letters[3]_i_1_n_0     | op0/rst                         |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG                                       | test/slave_receiver/sl_ctrl_0/next_data                   | op0/rst                         |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/E[0]                                  | op0/rst                         |                3 |              5 |         1.67 |
+|  clk_IBUF_BUFG                                       | test/slave_receiver/sl_ctrl_0/next_state                  | op0/rst                         |                2 |              6 |         3.00 |
+|  clk_IBUF_BUFG                                       | svn_seg/FSM_sequential_digit[2]_i_1_n_0                   | op0/rst                         |                3 |              7 |         2.33 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/rx_finish         | op0/rst                         |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/rx_valid          | op0/rst                         |                3 |              8 |         2.67 |
+|  CD0/Q[0]                                            |                                                           | VC0/pixel_cnt[9]_i_1_n_0        |                4 |             10 |         2.50 |
+|  CD0/Q[0]                                            | VC0/line_cnt                                              | VC0/line_cnt[9]_i_1_n_0         |                3 |             10 |         3.33 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/inst/Ps2Interface_i/frame[10]_i_1_n_0 | op0/rst                         |                3 |             11 |         3.67 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/next_key                              | op0/rst                         |                6 |             23 |         3.83 |
+|  clk_IBUF_BUFG                                       |                                                           | op0/signal_single_pulse_reg_0   |                6 |             27 |         4.50 |
+|  clk_IBUF_BUFG                                       |                                                           |                                 |               11 |             34 |         3.09 |
+|  clk_IBUF_BUFG                                       |                                                           | op0/rst                         |               32 |             91 |         2.84 |
+|  clk_IBUF_BUFG                                       | test/kb_main/key_de/op/E[0]                               | op0/rst                         |              142 |            512 |         3.61 |
+|  clk_IBUF_BUFG                                       | test/kb_main/new_press_detector/op0/E[0]                  |                                 |              138 |            512 |         3.71 |
++------------------------------------------------------+-----------------------------------------------------------+---------------------------------+------------------+----------------+--------------+
 
 

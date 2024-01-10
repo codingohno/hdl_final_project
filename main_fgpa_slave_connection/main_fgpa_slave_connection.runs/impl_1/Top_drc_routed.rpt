@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Sun Jan  7 23:41:08 2024
+| Date         : Wed Jan 10 21:07:42 2024
 | Host         : DESKTOP-NPIMFVD running 64-bit major release  (build 9200)
 | Command      : report_drc -file Top_drc_routed.rpt -pb Top_drc_routed.pb -rpx Top_drc_routed.rpx
 | Design       : Top
@@ -24,11 +24,12 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 1
+             Violations found: 7
 +----------+----------+-----------------------------------------------------+------------+
 | Rule     | Severity | Description                                         | Violations |
 +----------+----------+-----------------------------------------------------+------------+
 | CFGBVS-1 | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
+| PDRC-153 | Warning  | Gated clock check                                   | 6          |
 +----------+----------+-----------------------------------------------------+------------+
 
 2. REPORT DETAILS
@@ -44,6 +45,36 @@ Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_des
  #where value2 is the voltage provided to configuration bank 0
 
 Refer to the device configuration user guide for more information.
+Related violations: <none>
+
+PDRC-153#1 Warning
+Gated clock check  
+Net HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[0]_0 is a gated clock net sourced by a combinational pin HANGMAN_GAME_LOGIC/keyboard5_reg[3]_i_1/O, cell HANGMAN_GAME_LOGIC/keyboard5_reg[3]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#2 Warning
+Gated clock check  
+Net HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[1]_0 is a gated clock net sourced by a combinational pin HANGMAN_GAME_LOGIC/keyboard6_reg[2]_i_1/O, cell HANGMAN_GAME_LOGIC/keyboard6_reg[2]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#3 Warning
+Gated clock check  
+Net HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[1]_1 is a gated clock net sourced by a combinational pin HANGMAN_GAME_LOGIC/keyboard2_l_reg_i_1/O, cell HANGMAN_GAME_LOGIC/keyboard2_l_reg_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#4 Warning
+Gated clock check  
+Net HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[1]_2 is a gated clock net sourced by a combinational pin HANGMAN_GAME_LOGIC/keyboard1_l_reg_i_1/O, cell HANGMAN_GAME_LOGIC/keyboard1_l_reg_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#5 Warning
+Gated clock check  
+Net HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[3]_1 is a gated clock net sourced by a combinational pin HANGMAN_GAME_LOGIC/keyboard4_l_reg_i_1/O, cell HANGMAN_GAME_LOGIC/keyboard4_l_reg_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#6 Warning
+Gated clock check  
+Net HANGMAN_GAME_LOGIC/num_of_revealed_letters_reg[3]_2 is a gated clock net sourced by a combinational pin HANGMAN_GAME_LOGIC/keyboard3_l_reg_i_1/O, cell HANGMAN_GAME_LOGIC/keyboard3_l_reg_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 

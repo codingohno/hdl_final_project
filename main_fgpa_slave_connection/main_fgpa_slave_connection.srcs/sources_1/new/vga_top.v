@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-
+//file not usedd-------------------observe by xijie
 module VGA_top(clk, rst, keyboard, vgaRed, vgaBlue, vgaGreen, hsync, vsync);
 	input clk, rst;
     input [4:0] keyboard; //for the keyboard input
