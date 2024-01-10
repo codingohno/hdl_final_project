@@ -100,16 +100,31 @@ module Top(
     .new_second_kb_data(new_second_kb_data)
   );
   
+  //JERRY
+  wire [11:0] data;
+  wire [16:0] pixel_addr;
+  wire [11:0] pixel;
+  wire [9:0] h_cnt, v_cnt;
+
+    wire clk_d2;//25MHz
+    clk_div #(2) CD0(.clk(clk), .clk_d(clk_d2));
+
+    blk_mem_gen_0 BMG0(
+		  .clka(clk_d2),
+        .wea(0),
+        .addra(pixel_addr),
+        .dina(data[11:0]),
+        .douta(pixel)
+    ); 
+
+    assign pixel_addr = ((h_cnt>>1)+320*(v_cnt>>1) )% 76800;
+  
   //JERRY ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // VGA CONTROLLER 
   // TO DO: LET THE 2ND KEYBOARD ALSO INPUT THE STUFF
   // TO DO: MAINTAIN THE STATE OF THE LETTER IN THE VGA
-    wire clk_d2;//25MHz
-    wire [9:0] h_cnt, v_cnt;
     wire valid;
 
-    clk_div #(2) CD0(.clk(clk), .clk_d(clk_d2));
-    
     //signals
     wire flag_1, flag_2, flag_3, flag_4, flag_5, flag_6;
 
@@ -157,8 +172,10 @@ module Top(
     always @(*) begin
       if(!valid)
           {vgaRed, vgaGreen, vgaBlue} =  12'hF00; // JERRY//red
+      else if(flag_1||flag_2||flag_3||flag_4||flag_5||flag_6)
+          {vgaRed, vgaGreen, vgaBlue} = 12'hFFF;
       else
-          {vgaRed, vgaGreen, vgaBlue} = (flag_1||flag_2||flag_3||flag_4||flag_5||flag_6) ? 12'hFFF :  12'h00F;
+          {vgaRed, vgaGreen, vgaBlue} = pixel;
     end
 
       localparam [4:0] row = 15;
@@ -235,9 +252,8 @@ module Top(
           .h_cnt(h_cnt),
           .v_cnt(v_cnt)
       );
-
    //END OF JERRY ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
+
   //showing the keyboard manager
   reg [15:0] nums;
   reg[1:0] chosen_set=2'd1;
